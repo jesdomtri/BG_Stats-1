@@ -19,7 +19,7 @@ public class UtilitiesActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // Set view
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_utilities);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

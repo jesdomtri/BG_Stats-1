@@ -60,7 +60,7 @@ public class AccountActivity extends AppCompatActivity {
         changeQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // PENDIENTE - Mostrar la anterior junto a un EditText donde el usuario podrá elegir una nueva
+                // PENDIENTE - Mostrar la anterior junto a un EditText donde el account podrá elegir una nueva
                 // respuesta para la pregunta estándar (o el conjunto, según lo implemente)
             }
         });
