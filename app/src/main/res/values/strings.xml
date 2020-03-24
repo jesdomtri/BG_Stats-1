@@ -37,5 +37,9 @@
     <string name="winner">Winner</string>
     <string name="your_position">Your rank</string>
     <string name="default_message_list">No games played yet :(</string>
+    <string name="dice6">6-sided</string>
+    <string name="dice10">10-sided</string>
+    <string name="dice20">20-sided</string>
+    <string name="dice_number">Dices</string>
 
 </resources>

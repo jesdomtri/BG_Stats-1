@@ -6,9 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 public class UtilitiesActivity extends AppCompatActivity {
+
+    TextView mTextMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,17 @@ public class UtilitiesActivity extends AppCompatActivity {
 
         // Set view
         setContentView(R.layout.activity_utilities);
+
+        // Handle the bottom menu clicks
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        mTextMessage = findViewById(R.id.message);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.setSelectedItemId(R.id.navigation_utility);
+    }
+
+    public void onDiceRollerClick(View view){
+        Intent diceRoller = new Intent(UtilitiesActivity.this, DiceRollerActivity.class);
+        startActivity(diceRoller);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
