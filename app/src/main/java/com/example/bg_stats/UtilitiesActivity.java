@@ -37,6 +37,11 @@ public class UtilitiesActivity extends AppCompatActivity {
         startActivity(diceRoller);
     }
 
+    public void onMagicArenaClick(View view){
+        Intent magicArena = new Intent(UtilitiesActivity.this, MagicArenaActivity.class);
+        startActivity(magicArena);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
