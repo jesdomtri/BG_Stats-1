@@ -10,9 +10,8 @@
         android:layout_width="32dp"
         android:layout_height="28dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:srcCompat="@drawable/health" />
 
@@ -32,9 +31,8 @@
         android:layout_width="32dp"
         android:layout_height="28dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/count_poison_2"
         app:srcCompat="@drawable/commander" />
 
@@ -55,9 +53,8 @@
         android:layout_width="32dp"
         android:layout_height="28dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/count_health_2"
         app:srcCompat="@drawable/magic" />
 
@@ -213,13 +210,12 @@
         android:id="@+id/btn_health_4_y1"
         android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginTop="45dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="+1"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_health_4_y5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
 
     <Button
         android:id="@+id/btn_poison_4_y5"
@@ -227,20 +223,19 @@
         android:layout_height="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="46dp"
         android:text="+5"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_4_y1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_4_y1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
 
     <ImageView
         android:id="@+id/commander_4"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_commander_4"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/count_poison_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:srcCompat="@drawable/commander" />
 
     <Button
@@ -249,21 +244,18 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="46dp"
         android:text="-1"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_4_n5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_4_n5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <ImageView
         android:id="@+id/poison_4"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_poison_4"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/count_health_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:srcCompat="@drawable/magic" />
 
     <Button
@@ -272,22 +264,22 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="45dp"
         android:text="-1"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_health_4_n5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <TextView
         android:id="@+id/count_health_4"
         android:layout_width="45dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="20"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/poison_4"
         app:layout_constraintEnd_toStartOf="@+id/btn_health_4_y1"
-        app:layout_constraintStart_toEndOf="@+id/btn_health_4_n1"
-        app:layout_constraintTop_toBottomOf="@+id/health_4" />
+        app:layout_constraintStart_toEndOf="@+id/btn_health_4_n1" />
 
     <Button
         android:id="@+id/btn_commander_4_y5"
@@ -295,20 +287,19 @@
         android:layout_height="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="9dp"
         android:text="+5"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btn_commander_4_y1" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
 
     <ImageView
         android:id="@+id/health_4"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_health_4"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:srcCompat="@drawable/health" />
 
     <Button
@@ -317,22 +308,22 @@
         android:layout_height="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="46dp"
         android:text="+5"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_4_y1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_4_y1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
 
     <Button
         android:id="@+id/btn_commander_4_y1"
         android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginTop="46dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="+1"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_4_y5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_4_y5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
 
     <Button
         android:id="@+id/btn_commander_4_n5"
@@ -340,32 +331,35 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="9dp"
         android:text="-5"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_commander_4_n1" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <TextView
         android:id="@+id/count_poison_4"
         android:layout_width="45dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="0"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/commander_4"
         app:layout_constraintEnd_toStartOf="@+id/btn_poison_4_y1"
-        app:layout_constraintStart_toEndOf="@+id/btn_poison_4_n1"
-        app:layout_constraintTop_toBottomOf="@+id/poison_4" />
+        app:layout_constraintStart_toEndOf="@+id/btn_poison_4_n1" />
 
     <TextView
         android:id="@+id/count_commander_4"
         android:layout_width="45dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="0"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/btn_commander_4_y1"
-        app:layout_constraintStart_toEndOf="@+id/btn_commander_4_n1"
-        app:layout_constraintTop_toBottomOf="@+id/commander_4" />
+        app:layout_constraintStart_toEndOf="@+id/btn_commander_4_n1" />
 
     <Button
         android:id="@+id/btn_health_4_n5"
@@ -373,10 +367,11 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="46dp"
         android:text="-5"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_4_n1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_4_n1"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_poison_4_n1"
@@ -384,11 +379,10 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="46dp"
         android:text="-1"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_4_n5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_4_n5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_poison_4_n5"
@@ -396,34 +390,33 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="46dp"
         android:text="-5"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_4_n1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_4_n1"
+        app:layout_constraintStart_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_poison_4_y1"
         android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginTop="46dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="+1"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_4_y5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_4_y5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8" />
 
     <Button
         android:id="@+id/btn_poison_3_y1"
         android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginTop="46dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="+1"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_3_y5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_3_y5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_poison_3_n5"
@@ -431,10 +424,11 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="46dp"
         android:text="-5"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_3_n1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_3_n1"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/btn_commander_3_n1"
@@ -442,21 +436,18 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="46dp"
         android:text="-1"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_3_n5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_3_n5"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <ImageView
         android:id="@+id/commander_3"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_commander_3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/count_poison_3"
         app:srcCompat="@drawable/commander" />
 
     <Button
@@ -465,32 +456,35 @@
         android:layout_height="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="46dp"
         android:text="+5"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_3_y1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_3_y1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6" />
 
     <TextView
         android:id="@+id/count_health_3"
         android:layout_width="45dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="20"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/poison_3"
         app:layout_constraintEnd_toStartOf="@+id/btn_health_3_y1"
-        app:layout_constraintStart_toEndOf="@+id/btn_health_3_n1"
-        app:layout_constraintTop_toBottomOf="@+id/health_3" />
+        app:layout_constraintStart_toEndOf="@+id/btn_health_3_n1" />
 
     <TextView
         android:id="@+id/count_poison_3"
         android:layout_width="45dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="0"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/commander_3"
         app:layout_constraintEnd_toStartOf="@+id/btn_poison_3_y1"
-        app:layout_constraintStart_toEndOf="@+id/btn_poison_3_n1"
-        app:layout_constraintTop_toBottomOf="@+id/poison_3" />
+        app:layout_constraintStart_toEndOf="@+id/btn_poison_3_n1" />
 
     <Button
         android:id="@+id/btn_health_3_y5"
@@ -498,10 +492,11 @@
         android:layout_height="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="46dp"
         android:text="+5"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_3_y1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_3_y1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_health_3_n1"
@@ -509,11 +504,10 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="45dp"
         android:text="-1"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_health_3_n5"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/btn_commander_3_n5"
@@ -521,33 +515,34 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="9dp"
         android:text="-5"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/btn_commander_3_n1" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <TextView
         android:id="@+id/count_commander_3"
         android:layout_width="45dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="0"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/btn_commander_3_y1"
-        app:layout_constraintStart_toEndOf="@+id/btn_commander_3_n1"
-        app:layout_constraintTop_toBottomOf="@+id/commander_3" />
+        app:layout_constraintStart_toEndOf="@+id/btn_commander_3_n1" />
 
     <Button
         android:id="@+id/btn_commander_3_y1"
         android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginTop="46dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="+1"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_poison_3_y5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_commander_3_y5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_health_3_n5"
@@ -555,10 +550,11 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginBottom="46dp"
         android:text="-5"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_3_n1" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_3_n1"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/btn_poison_3_n1"
@@ -566,11 +562,10 @@
         android:layout_height="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="46dp"
         android:text="-1"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/btn_health_3_n5" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_poison_3_n5"
+        app:layout_constraintStart_toStartOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/btn_commander_3_y5"
@@ -578,52 +573,47 @@
         android:layout_height="32dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="9dp"
         android:text="+5"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_commander_3_y1" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6" />
 
     <Button
         android:id="@+id/btn_health_3_y1"
         android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginTop="45dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:text="+1"
         android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_health_3_y5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6" />
 
     <ImageView
         android:id="@+id/health_3"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_health_3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:srcCompat="@drawable/health" />
 
     <ImageView
         android:id="@+id/poison_3"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
-        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_poison_3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/count_health_3"
         app:srcCompat="@drawable/magic" />
 
     <ImageView
         android:id="@+id/health_1"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@id/guideline7"
         app:layout_constraintTop_toTopOf="@id/guideline"
         app:srcCompat="@drawable/health" />
@@ -632,9 +622,8 @@
         android:id="@+id/poison_1"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
         android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/count_health_1"
         app:srcCompat="@drawable/magic" />
@@ -700,9 +689,8 @@
         android:id="@+id/commander_1"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
         android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/count_poison_1"
         app:srcCompat="@drawable/commander" />
@@ -846,22 +834,6 @@
         app:layout_constraintGuide_percent="1.0" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.25" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.75" />
-
-    <android.support.constraint.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -874,8 +846,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.0" />
+        app:layout_constraintGuide_end="411dp"
+        app:layout_constraintGuide_percent="0.0"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline8"
@@ -884,5 +856,15 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp"
         app:layout_constraintGuide_percent="1.0" />
+
+    <ImageView
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:srcCompat="@drawable/reset" />
 
 </android.support.constraint.ConstraintLayout>

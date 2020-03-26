@@ -5,11 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 public class MagicArenaActivity extends AppCompatActivity {
+
+    /////////////////////////////////////// Reset Button ///////////////////////////////////////
+
+    public ImageView reset;
 
     /////////////////////////////////////// Player 1 ///////////////////////////////////////
 
@@ -17,78 +22,39 @@ public class MagicArenaActivity extends AppCompatActivity {
 
     public Button btn_health_1_n1, btn_health_1_n5, btn_health_1_y1, btn_health_1_y5;
 
-    public Button btn_poison_1_n1;
-    public Button btn_poison_1_n5;
-    public Button btn_poison_1_y1;
-    public Button btn_poison_1_y5;
+    public Button btn_poison_1_n1, btn_poison_1_n5, btn_poison_1_y1, btn_poison_1_y5;
 
-    public Button btn_commander_1_n1;
-    public Button btn_commander_1_n5;
-    public Button btn_commander_1_y1;
-    public Button btn_commander_1_y5;
+    public Button btn_commander_1_n1, btn_commander_1_n5, btn_commander_1_y1, btn_commander_1_y5;
 
     /////////////////////////////////////// Player 2 ///////////////////////////////////////
 
-    public TextView count_health_2;
-    public TextView count_poison_2;
-    public TextView count_commander_2;
+    public TextView count_health_2, count_poison_2, count_commander_2;
 
-    public Button btn_health_2_n1;
-    public Button btn_health_2_n5;
-    public Button btn_health_2_y1;
-    public Button btn_health_2_y5;
+    public Button btn_health_2_n1, btn_health_2_n5, btn_health_2_y1, btn_health_2_y5;
 
-    public Button btn_poison_2_n1;
-    public Button btn_poison_2_n5;
-    public Button btn_poison_2_y1;
-    public Button btn_poison_2_y5;
+    public Button btn_poison_2_n1, btn_poison_2_n5, btn_poison_2_y1, btn_poison_2_y5;
 
-    public Button btn_commander_2_n1;
-    public Button btn_commander_2_n5;
-    public Button btn_commander_2_y1;
-    public Button btn_commander_2_y5;
+    public Button btn_commander_2_n1, btn_commander_2_n5, btn_commander_2_y1, btn_commander_2_y5;
 
     /////////////////////////////////////// Player 3 ///////////////////////////////////////
 
-    public TextView count_health_3;
-    public TextView count_poison_3;
-    public TextView count_commander_3;
+    public TextView count_health_3, count_poison_3, count_commander_3;
 
-    public Button btn_health_3_n1;
-    public Button btn_health_3_n5;
-    public Button btn_health_3_y1;
-    public Button btn_health_3_y5;
+    public Button btn_health_3_n1, btn_health_3_n5, btn_health_3_y1, btn_health_3_y5;
 
-    public Button btn_poison_3_n1;
-    public Button btn_poison_3_n5;
-    public Button btn_poison_3_y1;
-    public Button btn_poison_3_y5;
+    public Button btn_poison_3_n1, btn_poison_3_n5, btn_poison_3_y1, btn_poison_3_y5;
 
-    public Button btn_commander_3_n1;
-    public Button btn_commander_3_n5;
-    public Button btn_commander_3_y1;
-    public Button btn_commander_3_y5;
+    public Button btn_commander_3_n1, btn_commander_3_n5, btn_commander_3_y1, btn_commander_3_y5;
 
     /////////////////////////////////////// Player 4 ///////////////////////////////////////
 
-    public TextView count_health_4;
-    public TextView count_poison_4;
-    public TextView count_commander_4;
+    public TextView count_health_4, count_poison_4, count_commander_4;
 
-    public Button btn_health_4_n1;
-    public Button btn_health_4_n5;
-    public Button btn_health_4_y1;
-    public Button btn_health_4_y5;
+    public Button btn_health_4_n1, btn_health_4_n5, btn_health_4_y1, btn_health_4_y5;
 
-    public Button btn_poison_4_n1;
-    public Button btn_poison_4_n5;
-    public Button btn_poison_4_y1;
-    public Button btn_poison_4_y5;
+    public Button btn_poison_4_n1, btn_poison_4_n5, btn_poison_4_y1, btn_poison_4_y5;
 
-    public Button btn_commander_4_n1;
-    public Button btn_commander_4_n5;
-    public Button btn_commander_4_y1;
-    public Button btn_commander_4_y5;
+    public Button btn_commander_4_n1, btn_commander_4_n5, btn_commander_4_y1, btn_commander_4_y5;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +66,10 @@ public class MagicArenaActivity extends AppCompatActivity {
 
         // Set view
         setContentView(R.layout.activity_magic);
+
+        /////////////////////////////////////// Reset Button ///////////////////////////////////////
+
+        reset = (ImageView) findViewById(R.id.reset);
 
         /////////////////////////////////////// Player 1 ///////////////////////////////////////
 
@@ -519,6 +489,24 @@ public class MagicArenaActivity extends AppCompatActivity {
             }
         });
 
+        reset.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                count_health_1.setText("20");
+                count_health_2.setText("20");
+                count_health_3.setText("20");
+                count_health_4.setText("20");
+
+                count_poison_1.setText("0");
+                count_poison_2.setText("0");
+                count_poison_3.setText("0");
+                count_poison_4.setText("0");
+
+                count_commander_1.setText("0");
+                count_commander_2.setText("0");
+                count_commander_3.setText("0");
+                count_commander_4.setText("0");
+            }
+        });
 
     }
 
