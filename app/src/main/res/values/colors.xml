@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
+    <color name="flatEmerald">#2ecc71</color>
+    <color name="flatNephritis">#27ae60</color>
+    <color name="flatWetAsphalt">#34495e</color>
+    <color name="flatClouds">#ecf0f1</color>
 </resources>

@@ -29,7 +29,7 @@ public class UtilitiesActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navView.setSelectedItemId(R.id.navigation_utility);
+        navView.getMenu().getItem(2).setChecked(true);
     }
 
     public void onDiceRollerClick(View view){

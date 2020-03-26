@@ -53,6 +53,9 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.getMenu().getItem(0).setChecked(true);
+
+
 
         // Populate expandable list with user games
         expList = findViewById(R.id.exp_list);
