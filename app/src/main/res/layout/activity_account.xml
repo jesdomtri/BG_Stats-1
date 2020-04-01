@@ -130,5 +130,4 @@
         app:layout_constraintGuide_percent="1.0" />
 
 
-
 </android.support.constraint.ConstraintLayout>
