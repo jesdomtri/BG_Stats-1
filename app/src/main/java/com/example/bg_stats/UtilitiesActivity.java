@@ -32,12 +32,13 @@ public class UtilitiesActivity extends AppCompatActivity {
         navView.getMenu().getItem(2).setChecked(true);
     }
 
-    public void onDiceRollerClick(View view){
-        Intent diceRoller = new Intent(UtilitiesActivity.this, DiceRollerActivity.class);
-        startActivity(diceRoller);
+    public void onDiceRollClick(View view) {
+        Intent diceRoll = new Intent(UtilitiesActivity.this, DiceRollerActivity.class);
+        startActivity(diceRoll);
     }
 
-    public void onMagicArenaClick(View view){
+
+    public void onMagicArenaClick(View view) {
         Intent magicArena = new Intent(UtilitiesActivity.this, MagicArenaActivity.class);
         startActivity(magicArena);
     }
