@@ -147,7 +147,7 @@ public class DiceRollerActivity extends AppCompatActivity {
                     default:
                         break;
                 }
-            } else {
+            } else if (index == 2) {
                 int randomNumber = rng.nextInt(20) + 1;
                 switch (randomNumber) {
                     case 1:
