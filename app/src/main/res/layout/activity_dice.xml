@@ -25,18 +25,18 @@
         android:id="@+id/dices"
         android:layout_width="300dp"
         android:layout_height="500dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/button_dice_roll"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/diceLabel" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_dice_roll"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_diceroll"
-        android:text="Lanzar dados"
+        android:text="Dice Roll"
         android:textAllCaps="true"
         android:textColor="@color/flatWetAsphalt"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
@@ -88,11 +88,11 @@
             android:textColor="@color/flatWetAsphalt" />
 
         <RadioButton
-            android:id="@+id/dice10Sided"
+            android:id="@+id/dice12Sided"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/dice10"
+            android:text="@string/dice12"
             android:textColor="@color/flatWetAsphalt" />
 
         <RadioButton
