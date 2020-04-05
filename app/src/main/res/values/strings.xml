@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BG_Stats</string>
+    <string name="app_name">Boardgame Stats</string>
     <string name="login_title">Login</string>
     <string name="login_username">Username</string>
     <string name="login_hint_user">Enter your username</string>
