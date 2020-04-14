@@ -60,6 +60,28 @@ public class myDbAdapter {
 
     }
 
+    public void changeUserName(String username, String newUserName) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String selectQuery = "SELECT Name from MainTable where Name='" + username + "'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        db.execSQL("UPDATE MainTable " +
+                "SET Name = " + newUserName +
+                " WHERE Name = " + username);
+
+        cursor.close();
+    }
+
+    public void changePassword(String password, String newPassWord) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String selectQuery = "SELECT Name from MainTable where PassWord='" + password + "'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        db.execSQL("UPDATE MainTable " +
+                "SET PassWord = " + newPassWord +
+                " WHERE PassWord = " + password);
+
+        cursor.close();
+    }
+
     public ArrayList<String> getGamesByUser(String username) {
         ArrayList<String> gamesUsername = new ArrayList<>();
         SQLiteDatabase db = myhelper.getReadableDatabase();

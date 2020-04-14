@@ -1,5 +1,7 @@
 package com.example.bg_stats;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,8 +45,22 @@ public class AccountActivity extends AppCompatActivity {
         changeUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // PENDIENTE - Lanzar un PopUp donde podrá elegir un nuevo username, confirmando con la contraseña
-            }
+                    new AlertDialog.Builder(getApplicationContext())
+                            .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Accion correcta ", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Accion incorrecta ", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .show();
+                }
         });
 
         // If user click change password...
@@ -54,17 +71,6 @@ public class AccountActivity extends AppCompatActivity {
                 // PENDIENTE - Lanzar un PopUp donde podrá elegir una nueva contraseña, confirmando la anterior.
             }
         });
-
-        // If user click change question...
-        changeQuestion = findViewById(R.id.change_question);
-        changeQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // PENDIENTE - Mostrar la anterior junto a un EditText donde el account podrá elegir una nueva
-                // respuesta para la pregunta estándar (o el conjunto, según lo implemente)
-            }
-        });
-
 
         // If user click change games...
         changeGames = findViewById(R.id.change_games);

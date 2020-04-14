@@ -33,7 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
         b1 =  findViewById(R.id.b_sign_up);
         et1 = findViewById(R.id.sign_up_Username);
         et2 = findViewById(R.id.sign_up_Password);
-        et3 = findViewById(R.id.sign_up_Answer);
 
         // When user clicks 'Done' button...
         b1.setOnClickListener(new View.OnClickListener() {

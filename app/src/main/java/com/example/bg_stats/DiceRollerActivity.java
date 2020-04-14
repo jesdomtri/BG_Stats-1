@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ public class DiceRollerActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private ListView dices;
-    private Adapter adapter;
+    private ListAdapter listAdapter;
 
     private Random rng = new Random();
 
@@ -69,15 +68,15 @@ public class DiceRollerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int index = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
                 dices = (ListView) findViewById(R.id.dices);
-                adapter = new Adapter(getArrayItems(index, Integer.parseInt((String) diceCount.getText())), DiceRollerActivity.this);
-                dices.setAdapter(adapter);
+                listAdapter = new ListAdapter(getArrayItems(index, Integer.parseInt((String) diceCount.getText())), DiceRollerActivity.this);
+                dices.setAdapter(listAdapter);
             }
         });
 
     }
 
-    private ArrayList<Entidad> getArrayItems(int index, Integer diceCount) {
-        ArrayList<Entidad> listItems = new ArrayList<>();
+    private ArrayList<ListEntity> getArrayItems(int index, Integer diceCount) {
+        ArrayList<ListEntity> listItems = new ArrayList<>();
         //listItems.add(new Entidad(R.drawable.d6_1));
 
         for (int i = 0; i < diceCount; i++) {
@@ -85,22 +84,22 @@ public class DiceRollerActivity extends AppCompatActivity {
                 int randomNumber = rng.nextInt(6) + 1;
                 switch (randomNumber) {
                     case 1:
-                        listItems.add(new Entidad(R.drawable.d6_1));
+                        listItems.add(new ListEntity(R.drawable.d6_1));
                         break;
                     case 2:
-                        listItems.add(new Entidad(R.drawable.d6_2));
+                        listItems.add(new ListEntity(R.drawable.d6_2));
                         break;
                     case 3:
-                        listItems.add(new Entidad(R.drawable.d6_3));
+                        listItems.add(new ListEntity(R.drawable.d6_3));
                         break;
                     case 4:
-                        listItems.add(new Entidad(R.drawable.d6_4));
+                        listItems.add(new ListEntity(R.drawable.d6_4));
                         break;
                     case 5:
-                        listItems.add(new Entidad(R.drawable.d6_5));
+                        listItems.add(new ListEntity(R.drawable.d6_5));
                         break;
                     case 6:
-                        listItems.add(new Entidad(R.drawable.d6_6));
+                        listItems.add(new ListEntity(R.drawable.d6_6));
                         break;
                     default:
                         break;
@@ -109,40 +108,40 @@ public class DiceRollerActivity extends AppCompatActivity {
                 int randomNumber = rng.nextInt(12) + 1;
                 switch (randomNumber) {
                     case 1:
-                        listItems.add(new Entidad(R.drawable.d12_1));
+                        listItems.add(new ListEntity(R.drawable.d12_1));
                         break;
                     case 2:
-                        listItems.add(new Entidad(R.drawable.d12_2));
+                        listItems.add(new ListEntity(R.drawable.d12_2));
                         break;
                     case 3:
-                        listItems.add(new Entidad(R.drawable.d12_3));
+                        listItems.add(new ListEntity(R.drawable.d12_3));
                         break;
                     case 4:
-                        listItems.add(new Entidad(R.drawable.d12_4));
+                        listItems.add(new ListEntity(R.drawable.d12_4));
                         break;
                     case 5:
-                        listItems.add(new Entidad(R.drawable.d12_5));
+                        listItems.add(new ListEntity(R.drawable.d12_5));
                         break;
                     case 6:
-                        listItems.add(new Entidad(R.drawable.d12_6));
+                        listItems.add(new ListEntity(R.drawable.d12_6));
                         break;
                     case 7:
-                        listItems.add(new Entidad(R.drawable.d12_7));
+                        listItems.add(new ListEntity(R.drawable.d12_7));
                         break;
                     case 8:
-                        listItems.add(new Entidad(R.drawable.d12_8));
+                        listItems.add(new ListEntity(R.drawable.d12_8));
                         break;
                     case 9:
-                        listItems.add(new Entidad(R.drawable.d12_9));
+                        listItems.add(new ListEntity(R.drawable.d12_9));
                         break;
                     case 10:
-                        listItems.add(new Entidad(R.drawable.d12_10));
+                        listItems.add(new ListEntity(R.drawable.d12_10));
                         break;
                     case 11:
-                        listItems.add(new Entidad(R.drawable.d12_11));
+                        listItems.add(new ListEntity(R.drawable.d12_11));
                         break;
                     case 12:
-                        listItems.add(new Entidad(R.drawable.d12_12));
+                        listItems.add(new ListEntity(R.drawable.d12_12));
                         break;
                     default:
                         break;
@@ -151,64 +150,64 @@ public class DiceRollerActivity extends AppCompatActivity {
                 int randomNumber = rng.nextInt(20) + 1;
                 switch (randomNumber) {
                     case 1:
-                        listItems.add(new Entidad(R.drawable.d20_1));
+                        listItems.add(new ListEntity(R.drawable.d20_1));
                         break;
                     case 2:
-                        listItems.add(new Entidad(R.drawable.d20_2));
+                        listItems.add(new ListEntity(R.drawable.d20_2));
                         break;
                     case 3:
-                        listItems.add(new Entidad(R.drawable.d20_3));
+                        listItems.add(new ListEntity(R.drawable.d20_3));
                         break;
                     case 4:
-                        listItems.add(new Entidad(R.drawable.d20_4));
+                        listItems.add(new ListEntity(R.drawable.d20_4));
                         break;
                     case 5:
-                        listItems.add(new Entidad(R.drawable.d20_5));
+                        listItems.add(new ListEntity(R.drawable.d20_5));
                         break;
                     case 6:
-                        listItems.add(new Entidad(R.drawable.d20_6));
+                        listItems.add(new ListEntity(R.drawable.d20_6));
                         break;
                     case 7:
-                        listItems.add(new Entidad(R.drawable.d20_7));
+                        listItems.add(new ListEntity(R.drawable.d20_7));
                         break;
                     case 8:
-                        listItems.add(new Entidad(R.drawable.d20_8));
+                        listItems.add(new ListEntity(R.drawable.d20_8));
                         break;
                     case 9:
-                        listItems.add(new Entidad(R.drawable.d20_9));
+                        listItems.add(new ListEntity(R.drawable.d20_9));
                         break;
                     case 10:
-                        listItems.add(new Entidad(R.drawable.d20_10));
+                        listItems.add(new ListEntity(R.drawable.d20_10));
                         break;
                     case 11:
-                        listItems.add(new Entidad(R.drawable.d20_11));
+                        listItems.add(new ListEntity(R.drawable.d20_11));
                         break;
                     case 12:
-                        listItems.add(new Entidad(R.drawable.d20_12));
+                        listItems.add(new ListEntity(R.drawable.d20_12));
                         break;
                     case 13:
-                        listItems.add(new Entidad(R.drawable.d20_13));
+                        listItems.add(new ListEntity(R.drawable.d20_13));
                         break;
                     case 14:
-                        listItems.add(new Entidad(R.drawable.d20_14));
+                        listItems.add(new ListEntity(R.drawable.d20_14));
                         break;
                     case 15:
-                        listItems.add(new Entidad(R.drawable.d20_15));
+                        listItems.add(new ListEntity(R.drawable.d20_15));
                         break;
                     case 16:
-                        listItems.add(new Entidad(R.drawable.d20_16));
+                        listItems.add(new ListEntity(R.drawable.d20_16));
                         break;
                     case 17:
-                        listItems.add(new Entidad(R.drawable.d20_17));
+                        listItems.add(new ListEntity(R.drawable.d20_17));
                         break;
                     case 18:
-                        listItems.add(new Entidad(R.drawable.d20_18));
+                        listItems.add(new ListEntity(R.drawable.d20_18));
                         break;
                     case 19:
-                        listItems.add(new Entidad(R.drawable.d20_19));
+                        listItems.add(new ListEntity(R.drawable.d20_19));
                         break;
                     case 20:
-                        listItems.add(new Entidad(R.drawable.d20_20));
+                        listItems.add(new ListEntity(R.drawable.d20_20));
                         break;
                     default:
                         break;

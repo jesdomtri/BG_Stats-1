@@ -1,10 +1,10 @@
 package com.example.bg_stats;
 
-public class Entidad {
+public class ListEntity {
 
     private int image;
 
-    public Entidad(int image) {
+    public ListEntity(int image) {
         this.image = image;
     }
 

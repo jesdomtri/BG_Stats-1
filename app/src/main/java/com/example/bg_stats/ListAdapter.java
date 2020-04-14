@@ -1,6 +1,5 @@
 package com.example.bg_stats;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +9,12 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class Adapter extends BaseAdapter {
+public class ListAdapter extends BaseAdapter {
 
-    private ArrayList<Entidad> listItems;
+    private ArrayList<ListEntity> listItems;
     private Context context;
 
-    public Adapter(ArrayList<Entidad> listItems, Context context) {
+    public ListAdapter(ArrayList<ListEntity> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -38,7 +37,7 @@ public class Adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        Entidad item = (Entidad) getItem(i);
+        ListEntity item = (ListEntity) getItem(i);
 
         view = LayoutInflater.from(context).inflate(R.layout.image_dice, null);
         ImageView image = (ImageView) view.findViewById(R.id.imgDice);

@@ -55,28 +55,16 @@
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <Button
-        android:id="@+id/change_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_account"
-        android:text="Change your secret question"
-        android:textColor="@color/flatWetAsphalt"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline11" />
-
-    <Button
         android:id="@+id/change_games"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_account"
         android:text="Change your game list"
         android:textColor="@color/flatWetAsphalt"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/change_question" />
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
