@@ -1,15 +1,21 @@
 package com.example.bg_stats;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,24 +49,36 @@ public class AccountActivity extends AppCompatActivity {
         // If user click change username...
         changeUsername = findViewById(R.id.change_username);
         changeUsername.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                    new AlertDialog.Builder(getApplicationContext())
-                            .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Toast.makeText(getApplicationContext(),
-                                            "Accion correcta ", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Toast.makeText(getApplicationContext(),
-                                            "Accion incorrecta ", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .show();
-                }
+                
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.dialog_change_username, null);
+                final EditText edit_username = (EditText) view.findViewById(R.id.input_new_username);
+
+                new AlertDialog.Builder(AccountActivity.this)
+                        .setTitle("Change username")
+                        .setView(view)
+                        .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                helper.changeUserName(SaveSharedPreferences.getUsername(getApplicationContext()), edit_username.getText().toString());
+                                SaveSharedPreferences.setUsername(getApplicationContext(), edit_username.getText().toString());
+                                Toast.makeText(getApplicationContext(),
+                                        "Username changed", Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Username not changed", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+            }
         });
 
         // If user click change password...

@@ -65,8 +65,8 @@ public class myDbAdapter {
         String selectQuery = "SELECT Name from MainTable where Name='" + username + "'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         db.execSQL("UPDATE MainTable " +
-                "SET Name = " + newUserName +
-                " WHERE Name = " + username);
+                "SET Name = '" + newUserName +
+                "' WHERE Name = '" + username + "'");
 
         cursor.close();
     }
