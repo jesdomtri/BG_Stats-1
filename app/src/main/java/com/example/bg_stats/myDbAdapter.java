@@ -76,8 +76,8 @@ public class myDbAdapter {
         String selectQuery = "SELECT Name from MainTable where PassWord='" + password + "'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         db.execSQL("UPDATE MainTable " +
-                "SET PassWord = " + newPassWord +
-                " WHERE PassWord = " + password);
+                "SET PassWord = '" + newPassWord +
+                "' WHERE PassWord = '" + password + "'");
 
         cursor.close();
     }

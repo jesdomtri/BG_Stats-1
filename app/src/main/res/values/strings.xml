@@ -42,5 +42,6 @@
     <string name="dice20">20-sided</string>
     <string name="dice_number">Dices</string>
     <string name="dialog_newUsername">Enter your new username</string>
+    <string name="dialog_newPassword">Enter your new password</string>
 
 </resources>

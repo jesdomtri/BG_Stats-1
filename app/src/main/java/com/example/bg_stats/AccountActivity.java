@@ -86,7 +86,30 @@ public class AccountActivity extends AppCompatActivity {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // PENDIENTE - Lanzar un PopUp donde podrá elegir una nueva contraseña, confirmando la anterior.
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.dialog_change_password, null);
+                final EditText edit_password = (EditText) view.findViewById(R.id.input_new_password);
+
+                new AlertDialog.Builder(AccountActivity.this)
+                        .setTitle("Change password")
+                        .setView(view)
+                        .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                helper.changePassword(SaveSharedPreferences.getUsername(getApplicationContext()), edit_password.getText().toString());
+                                Toast.makeText(getApplicationContext(),
+                                        "Password changed", Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Password not changed", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
             }
         });
 
