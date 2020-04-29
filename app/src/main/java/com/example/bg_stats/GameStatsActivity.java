@@ -28,7 +28,7 @@ public class GameStatsActivity extends AppCompatActivity {
     ListView oListView;
     LineChartView lineChartView;
     ArrayAdapter<String> StableAdapter;
-    List<String> StatsOptions = Arrays.asList("Games played by month", "Stat Option 2", "Stat Option 3");
+    List<String> StatsOptions = Arrays.asList("Games played by month", "Games won by month", "Games lost by month");
     String username;
     String SelectedGame;
 
@@ -105,8 +105,8 @@ public class GameStatsActivity extends AppCompatActivity {
                         oTitleStat.setText(StatsOptions.get(position));
                         lineChartView = findViewById(R.id.chart);
 
-                        String[] axisData1 = {"May", "June", "July", "Aug"};
-                        int[] yAxisData1 = {20, 60, 15, 40};
+                        String[] axisData1 = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
+                        int[] yAxisData1 = helper.getFilteredWinsByMonthsAndUserAndGame(username, SelectedGame);
 
                         List yAxisValues1 = new ArrayList();
                         List axisValues1 = new ArrayList();
@@ -143,8 +143,8 @@ public class GameStatsActivity extends AppCompatActivity {
                         oTitleStat.setText(StatsOptions.get(position));
                         lineChartView = findViewById(R.id.chart);
 
-                        String[] axisData2 = {"Sept", "Oct", "Nov", "Dec"};
-                        int[] yAxisData2 = {45, 10, 90, 18};
+                        String[] axisData2 = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
+                        int[] yAxisData2 = helper.getFilteredLostByMonthsAndUserAndGame(username, SelectedGame);
 
                         List yAxisValues2 = new ArrayList();
                         List axisValues2 = new ArrayList();

@@ -194,6 +194,37 @@ public class myDbAdapter {
         return filteredGames;
     }
 
+    public int[] getFilteredWinsByMonthsAndUserAndGame(String username, String game) {
+        int[] filteredGames = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        SQLiteDatabase db = myhelper.getReadableDatabase();
+        String selectQuery = "SELECT * from GameTable where GameName = '" + game + "' and Player_1 = '" + username + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        while (cursor.moveToNext()) {
+            String dateParameter = cursor.getString(19);
+            int month = Integer.parseInt(dateParameter.substring(3, 5));
+            filteredGames[month-1] += 1;
+        }
+
+        return filteredGames;
+    }
+
+    public int[] getFilteredLostByMonthsAndUserAndGame(String username, String game) {
+        int[] filteredGames = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        SQLiteDatabase db = myhelper.getReadableDatabase();
+        String selectQuery = "SELECT * from GameTable where GameName = '" + game + "' and not Player_1 = '" + username + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        while (cursor.moveToNext()) {
+            String dateParameter = cursor.getString(19);
+            int month = Integer.parseInt(dateParameter.substring(3, 5));
+            filteredGames[month-1] += 1;
+        }
+
+        return filteredGames;
+    }
+
+
     static class myDbHelper extends SQLiteOpenHelper {
         private static final String DATABASE_NAME = "myDatabase";    // Database Name
         private static final String MAIN_TABLE = "MainTable";   // Table Name
