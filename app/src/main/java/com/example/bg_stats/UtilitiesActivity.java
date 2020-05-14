@@ -43,6 +43,11 @@ public class UtilitiesActivity extends AppCompatActivity {
         startActivity(magicArena);
     }
 
+    public void onChronometerClick(View view) {
+        Intent chronometer = new Intent(UtilitiesActivity.this, ChronometerActivity.class);
+        startActivity(chronometer);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

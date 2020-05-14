@@ -16,7 +16,7 @@
         android:text="@string/dice_number"
         android:textColor="@color/flatWetAsphalt"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
@@ -26,7 +26,7 @@
         android:layout_width="300dp"
         android:layout_height="500dp"
         app:layout_constraintBottom_toTopOf="@+id/button_dice_roll"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/diceLabel" />
 
@@ -40,7 +40,7 @@
         android:textAllCaps="true"
         android:textColor="@color/flatWetAsphalt"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
@@ -75,7 +75,7 @@
         android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline10">
 
@@ -121,7 +121,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/v2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

@@ -56,15 +56,17 @@
         tools:srcCompat="@drawable/diceroller" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:onClick="onChronometerClick"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/chronometer_background"
+        tools:srcCompat="@drawable/chronometer_background" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"

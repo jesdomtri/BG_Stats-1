@@ -22,7 +22,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintStart_toEndOf="@+id/gameMain"
         app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
@@ -33,7 +33,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toEndOf="@+id/gameMain"
         app:layout_constraintTop_toBottomOf="@+id/gameWinner" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/winner"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@id/guideline10" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/your_position"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/v2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelWinner" />
 
@@ -75,7 +75,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/v2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
