@@ -2,22 +2,38 @@ package com.example.bg_stats;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.design.widget.BottomNavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class HomeActivity extends AppCompatActivity {
 
     myDbAdapter helper;
     TextView oTextView, mTextMessage, oTitleView;
-    ArrayList<String> games = new ArrayList<>();
+    ArrayList<String> games = new ArrayList<String>();
     TextView defaultMessage;
 
     private ExpandableAdapter expandableAdapter;
@@ -25,12 +41,19 @@ public class HomeActivity extends AppCompatActivity {
     public static ArrayList<ArrayList<String>> childList;
     public String[] parents;
 
+    private ValueEventListener eventListener;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize DB
-        helper = new myDbAdapter(this);
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        String userID = mAuth.getCurrentUser().getUid();
+//        mDatabase.child("Usuarios").child(userID).child("Juegos").setValue("Aaaaaa");
 
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -54,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.getMenu().getItem(0).setChecked(true);
-
 
 
         // Populate expandable list with user games
@@ -132,14 +154,39 @@ public class HomeActivity extends AppCompatActivity {
     private void getParentsAndChilds() {
         // Get games
         childList = new ArrayList<>();
-        games = helper.getGamesByUser(SaveSharedPreferences.getUsername(getApplicationContext()));
-        parents = games.toArray(new String[0]);
+        DatabaseReference dbGames = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("Games");
+
+        eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> td = (HashMap<String, Object>) dataSnapshot.getValue();
+                ArrayList<Object> valores = new ArrayList<>(td.values());
+                for (Object v : valores) {
+                    games.add(v.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Error", "Error!", databaseError.toException());
+            }
+        };
+
+        dbGames.addListenerForSingleValueEvent(eventListener);
+
+        parents = new String[games.size()];
+
+        for (int i=0; i<games.size();i++){
+            parents[i]=games.get(i);
+        }
+
+//        parents = games.toArray();
 
         // Create sub-menu
         for (int index = 0; index < parents.length; index++) {
             ArrayList<String> aux = new ArrayList<>();
-            Integer played = helper.getNumberOfGamesPlayedByUserAndGame(SaveSharedPreferences.getUsername(getApplicationContext()), parents[index]);
-            Integer wins = helper.getNumberOfWinsByUserAndGame(SaveSharedPreferences.getUsername(getApplicationContext()), parents[index]);
+            Integer played = 0;
+            Integer wins = 0;
             Integer losses = played - wins;
             aux.add("Total: " + played + " Wins: " + wins + " Losses: " + losses);
             aux.add("Add new game");

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "615030299050",
+    "firebase_url": "https://bg-stats-hm.firebaseio.com",
+    "project_id": "bg-stats-hm",
+    "storage_bucket": "bg-stats-hm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615030299050:android:f6a2e14431cea73b5c73d3",
+        "android_client_info": {
+          "package_name": "com.example.bg_stats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615030299050-5fcmdeeo1ah9620mul3o3fnv3jdv5egn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJyvNetlQjXa_76l9OkZ492TN_tTgZJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615030299050-5fcmdeeo1ah9620mul3o3fnv3jdv5egn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,12 @@
 package com.example.bg_stats;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -10,19 +14,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     Button b1;
     EditText et1, et2;
     TextView vt1;
-    myDbAdapter helper;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize DB
-        helper = new myDbAdapter(this);
+        mAuth = FirebaseAuth.getInstance();
 
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -59,27 +69,37 @@ public class MainActivity extends AppCompatActivity {
             b1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //If username exists then... otherwise wrong credential
-                    if (helper.usernameCheck(et1.getText().toString())) {
-                        if (helper.passwordCheck(et1.getText().toString(), et2.getText().toString())) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Login Successful ", Toast.LENGTH_SHORT).show();
-                            // Redirect to Home View
-                            Intent home = new Intent(MainActivity.this, HomeActivity.class);
-                            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            SaveSharedPreferences.setLoggedIn(getApplicationContext(), true);
-                            SaveSharedPreferences.setUsername(getApplicationContext(), et1.getText().toString());
-                            startActivity(home);
-                            // End login activity
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(),
-                                    "Incorrect password for username '" + et1.getText().toString() + "'", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(),
-                                "'" + et1.getText().toString() + "' username does not exist ", Toast.LENGTH_SHORT).show();
+                    String email = et1.getText().toString();
+                    String password = et2.getText().toString();
+
+                    try {
+                        mAuth.signInWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            // Sign in success, update UI with the signed-in user's information
+                                            Log.d("Login", "signInWithEmail:success");
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            Toast.makeText(MainActivity.this, "Successful login.",
+                                                    Toast.LENGTH_SHORT).show();
+                                            // Redirect to Home View
+                                            Intent home = new Intent(MainActivity.this, HomeActivity.class);
+                                            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(home);
+                                            // End login activity
+                                            finish();
+                                        } else {
+                                            // If sign in fails, display a message to the user.
+                                            Log.w("Login", "signInWithEmail:failure", task.getException());
+                                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 }
             });
