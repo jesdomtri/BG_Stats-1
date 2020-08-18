@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listGames"
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_changes"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="@+id/guideline4"

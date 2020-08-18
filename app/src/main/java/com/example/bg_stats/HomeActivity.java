@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +26,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
+    private RecyclerView mRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,29 @@ public class HomeActivity extends AppCompatActivity {
         // Show home view
         setContentView(R.layout.activity_home);
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.exp_list);
+        new FirebaseDatabaseHelper().readUsers(new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Game> games, List<String> keys) {
+                new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, games, keys);
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
         // If user click on "Change your games", redirect to account option to do so
         oTextView = findViewById(R.id.change_games_home);
         oTextView.setOnClickListener(new View.OnClickListener() {
@@ -77,47 +104,6 @@ public class HomeActivity extends AppCompatActivity {
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.getMenu().getItem(0).setChecked(true);
-
-
-        // Populate expandable list with user games
-        expList = findViewById(R.id.exp_list);
-        expList.setClickable(true);
-
-        // Get games and sub-items for every item
-        getParentsAndChilds();
-        expandableAdapter = new ExpandableAdapter(this, childList, parents);
-        expList.setAdapter(expandableAdapter);
-
-        // Set onListener for the sub-menu options
-        expList.setOnChildClickListener(new ExpandableListView.
-                OnChildClickListener() {
-
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                if (childPosition == 1) { // Add new game
-                    Intent addGame = new Intent(HomeActivity.this, AddGameActivity.class);
-                    addGame.putExtra("Game_name", parents[groupPosition]);
-                    startActivity(addGame);
-                } else if (childPosition == 2) { // Redirect to list of games
-                    Intent gameList = new Intent(HomeActivity.this, GameListActivity.class);
-                    gameList.putExtra("Game_name", parents[groupPosition]);
-                    startActivity(gameList);
-                } else if (childPosition == 3) { // Redirect to stats activity
-                    Intent gameStats = new Intent(HomeActivity.this, GameStatsActivity.class);
-                    gameStats.putExtra("Game_name", parents[groupPosition]);
-                    startActivity(gameStats);
-                }
-                return true;
-            }
-        });
-        // If games selected by user equals 0, show message
-        defaultMessage = findViewById(R.id.defaultText);
-        if (games.size() == 0) {
-            defaultMessage.setVisibility(View.VISIBLE);
-        } else {
-            defaultMessage.setVisibility(View.INVISIBLE);
-        }
 
     }
 
@@ -150,51 +136,4 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         }
     };
-
-    private void getParentsAndChilds() {
-        // Get games
-        childList = new ArrayList<>();
-        DatabaseReference dbGames = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("Games");
-
-        eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Object> td = (HashMap<String, Object>) dataSnapshot.getValue();
-                ArrayList<Object> valores = new ArrayList<>(td.values());
-                for (Object v : valores) {
-                    games.add(v.toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("Error", "Error!", databaseError.toException());
-            }
-        };
-
-        dbGames.addListenerForSingleValueEvent(eventListener);
-
-        parents = new String[games.size()];
-
-        for (int i=0; i<games.size();i++){
-            parents[i]=games.get(i);
-        }
-
-//        parents = games.toArray();
-
-        // Create sub-menu
-        for (int index = 0; index < parents.length; index++) {
-            ArrayList<String> aux = new ArrayList<>();
-            Integer played = 0;
-            Integer wins = 0;
-            Integer losses = played - wins;
-            aux.add("Total: " + played + " Wins: " + wins + " Losses: " + losses);
-            aux.add("Add new game");
-            aux.add("See game list");
-            aux.add("Your game stats");
-
-            childList.add(aux);
-        }
-
-    }
 }
