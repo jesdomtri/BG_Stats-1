@@ -46,7 +46,7 @@ public class GameStatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gamestats);
 
         // Set title text
-        username = SaveSharedPreferences.getUsername(getApplicationContext());
+        username = "";
         SelectedGame = getIntent().getStringExtra("Game_name");
         oTextView = findViewById(R.id.game_stats);
         String string_title = SelectedGame + " Stats";

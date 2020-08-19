@@ -35,7 +35,7 @@ public class GameAdapter extends ArrayAdapter<GamePreview> {
         TextView gamePosition = convertView.findViewById(R.id.gamePlayer);
         TextView gameWinner = convertView.findViewById(R.id.gameWinner);
         // Populate the data into the template view using the data object
-        String username = SaveSharedPreferences.getUsername(mContext);
+        String username = "";
         String indexString = "Game " + (position + 1);
         gameIndex.setText(indexString);
         gameWinner.setText(itemGame.getWinner());

@@ -2,6 +2,11 @@ package com.example.bg_stats;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,46 +14,56 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public static ArrayList<ArrayList<String>> childList;
+    public String[] parents;
     myDbAdapter helper;
     TextView oTextView, mTextMessage, oTitleView;
     ArrayList<String> games = new ArrayList<String>();
     TextView defaultMessage;
-
     private ExpandableAdapter expandableAdapter;
     private ExpandableListView expList;
-    public static ArrayList<ArrayList<String>> childList;
-    public String[] parents;
-
     private ValueEventListener eventListener;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
     private RecyclerView mRecyclerView;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    break;
+                case R.id.navigation_account:
+                    Intent account = new Intent(HomeActivity.this, AccountActivity.class);
+                    startActivity(account);
+                    break;
+                case R.id.navigation_logout:
+                    SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
+                    Intent login = new Intent(HomeActivity.this, MainActivity.class);
+                    login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(login);
+                    finish();
+                    break;
+                case R.id.navigation_utility:
+                    Intent utility = new Intent(HomeActivity.this, UtilitiesActivity.class);
+                    startActivity(utility);
+                    break;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,34 +121,4 @@ public class HomeActivity extends AppCompatActivity {
         navView.getMenu().getItem(0).setChecked(true);
 
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    break;
-                case R.id.navigation_account:
-                    Intent account = new Intent(HomeActivity.this, AccountActivity.class);
-                    startActivity(account);
-                    break;
-                case R.id.navigation_logout:
-                    SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
-                    SaveSharedPreferences.setUsername(getApplicationContext(), "");
-                    Intent login = new Intent(HomeActivity.this, MainActivity.class);
-                    login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(login);
-                    finish();
-                    break;
-                case R.id.navigation_utility:
-                    Intent utility = new Intent(HomeActivity.this, UtilitiesActivity.class);
-                    startActivity(utility);
-                    break;
-            }
-            return false;
-        }
-    };
 }

@@ -57,7 +57,7 @@ public class AddGameActivity extends AppCompatActivity {
 
         // Get all users and set suggestion when writing others players
         oPlayer1 = findViewById(R.id.player1);
-        username = SaveSharedPreferences.getUsername(this);
+        username = "";
         oPlayer1.setText(username);
         oPlayer1.setEnabled(false);
 

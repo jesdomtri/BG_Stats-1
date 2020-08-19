@@ -32,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (SaveSharedPreferences.getLoggedStatus(MainActivity.this) == true){
+            // Redirect to Home View
+            Intent home = new Intent(MainActivity.this, HomeActivity.class);
+            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(home);
+            // End login activity
+            finish();
+        }
+
         mAuth = FirebaseAuth.getInstance();
 
         // Hide the title
@@ -81,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                             // Sign in success, update UI with the signed-in user's information
                                             Log.d("Login", "signInWithEmail:success");
                                             FirebaseUser user = mAuth.getCurrentUser();
+                                            SaveSharedPreferences.setLoggedIn(MainActivity.this, true);
                                             Toast.makeText(MainActivity.this, "Successful login.",
                                                     Toast.LENGTH_SHORT).show();
                                             // Redirect to Home View

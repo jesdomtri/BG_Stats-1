@@ -7,5 +7,8 @@
     <color name="flatEmerald">#2ecc71</color>
     <color name="flatNephritis">#27ae60</color>
     <color name="flatWetAsphalt">#34495e</color>
+    <color name="flatBelizeHole">#2980b9</color>
     <color name="flatClouds">#ecf0f1</color>
+    <color name="Black">#000000</color>
+    <color name="flatPomegrante">#c0392b</color>
 </resources>

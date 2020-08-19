@@ -43,5 +43,13 @@
     <string name="dice_number">Dices</string>
     <string name="dialog_newUsername">Enter your new username</string>
     <string name="dialog_newPassword">Enter your new password</string>
+    <string name="defeats">Defeats</string>
+    <string name="total_games">Total Games</string>
+    <string name="delete_game">Delete game</string>
+    <string name="_0">0</string>
+    <string name="title">title</string>
+    <string name="victories">Victories</string>
+    <string name="see_matches_s_list">See matches\'s list</string>
+    <string name="add_new_match">Add new match</string>
 
 </resources>

@@ -1,135 +1,36 @@
 package com.example.bg_stats;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;;
-import androidx.annotation.RequiresApi;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AccountActivity extends AppCompatActivity {
 
-    myDbAdapter helper;
-    TextView oTextView, changeUsername, changePassword, changeQuestion, changeGames, mTextMessage, nameField;
-    ArrayList<String> allGames = new ArrayList<>();
-    String valueUser, gameName;
+    private TextView email_acc, emailUser_acc, password_acc, passwordUser_acc, uid_acc, uidUser_acc, date_acc, dateUser_acc;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private Button buttonPassword_acc;
 
-        // Initialize DB
-        helper = new myDbAdapter(this);
-
-        // Hide the title
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
-        // Set view
-        setContentView(R.layout.activity_account);
-
-        // Set account title
-        oTextView = findViewById(R.id.account_title);
-        oTextView.setText(SaveSharedPreferences.getUsername(getApplicationContext()) + " Account");
-
-        // If user click change username...
-        changeUsername = findViewById(R.id.change_username);
-        changeUsername.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.dialog_change_username, null);
-                final EditText edit_username = (EditText) view.findViewById(R.id.input_new_username);
-
-                new AlertDialog.Builder(AccountActivity.this)
-                        .setTitle("Change username")
-                        .setView(view)
-                        .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                helper.changeUserName(SaveSharedPreferences.getUsername(getApplicationContext()), edit_username.getText().toString());
-                                SaveSharedPreferences.setUsername(getApplicationContext(), edit_username.getText().toString());
-                                Toast.makeText(getApplicationContext(),
-                                        "Username changed", Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Toast.makeText(getApplicationContext(),
-                                        "Username not changed", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .show();
-            }
-        });
-
-        // If user click change password...
-        changePassword = findViewById(R.id.change_password);
-        changePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.dialog_change_password, null);
-                final EditText edit_password = (EditText) view.findViewById(R.id.input_new_password);
-
-                new AlertDialog.Builder(AccountActivity.this)
-                        .setTitle("Change password")
-                        .setView(view)
-                        .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                helper.changePassword(SaveSharedPreferences.getUsername(getApplicationContext()), edit_password.getText().toString());
-                                Toast.makeText(getApplicationContext(),
-                                        "Password changed", Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Toast.makeText(getApplicationContext(),
-                                        "Password not changed", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .show();
-            }
-        });
-
-        // If user click change games...
-        changeGames = findViewById(R.id.change_games);
-        changeGames.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changeGames = new Intent(AccountActivity.this, ChangeGamesActivity.class);
-                startActivity(changeGames);
-            }
-        });
-
-        // Handle the bottom menu clicks
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navView.getMenu().getItem(1).setChecked(true);
-
-    }
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -145,7 +46,6 @@ public class AccountActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_logout:
                     SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
-                    SaveSharedPreferences.setUsername(getApplicationContext(), "");
                     Intent login = new Intent(AccountActivity.this, MainActivity.class);
                     login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -160,4 +60,62 @@ public class AccountActivity extends AppCompatActivity {
             return false;
         }
     };
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        String userID = mAuth.getCurrentUser().getUid();
+        String email = mAuth.getCurrentUser().getEmail();
+        String password = "**********";
+        long stamp = mAuth.getCurrentUser().getMetadata().getCreationTimestamp();
+        Date date = new Date(stamp);
+        DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        String strDate = dateFormat.format(date);
+
+        // Hide the title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+
+        // Set view
+        setContentView(R.layout.activity_account);
+
+        // Handle the bottom menu clicks
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.getMenu().getItem(1).setChecked(true);
+
+        emailUser_acc = findViewById(R.id.emailUser_acc);
+        emailUser_acc.setText(email);
+
+        passwordUser_acc = findViewById(R.id.passwordUser_acc);
+        passwordUser_acc.setText(password);
+
+        uidUser_acc = findViewById(R.id.uidUser_acc);
+        uidUser_acc.setText(userID);
+
+        dateUser_acc = findViewById(R.id.dateUser_acc);
+        dateUser_acc.setText(strDate);
+
+        buttonPassword_acc = findViewById(R.id.buttonPassword_acc);
+        buttonPassword_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AccountActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
+    }
 }

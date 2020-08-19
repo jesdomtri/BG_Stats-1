@@ -48,7 +48,7 @@ public class GameListActivity extends AppCompatActivity {
 
         // Set adapter
         oGameList = findViewById(R.id.gameList);
-        String username = SaveSharedPreferences.getUsername(getApplicationContext());
+        String username = "";
         listOfRows = helper.getGamesPlayedByUserAndGame(username, selectedGame);
         itemAdapter = new GameAdapter(this,R.layout.game_item, listOfRows);
         oGameList.setAdapter(itemAdapter);
@@ -75,7 +75,7 @@ public class GameListActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_logout:
                     SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
-                    SaveSharedPreferences.setUsername(getApplicationContext(), "");
+
                     Intent login = new Intent(GameListActivity.this, MainActivity.class);
                     login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

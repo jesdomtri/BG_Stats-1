@@ -64,7 +64,7 @@ public class UtilitiesActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_logout:
                     SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
-                    SaveSharedPreferences.setUsername(getApplicationContext(), "");
+
                     Intent login = new Intent(UtilitiesActivity.this, MainActivity.class);
                     login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
