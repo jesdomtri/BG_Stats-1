@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,25 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    public static ArrayList<ArrayList<String>> childList;
-    public String[] parents;
-    myDbAdapter helper;
-    TextView oTextView, mTextMessage, oTitleView;
-    ArrayList<String> games = new ArrayList<String>();
-    TextView defaultMessage;
-    private ExpandableAdapter expandableAdapter;
-    private ExpandableListView expList;
-    private ValueEventListener eventListener;
-    private DatabaseReference mDatabase;
+    TextView oTextView, mTextMessage;
     private FirebaseAuth mAuth;
 
     private RecyclerView mRecyclerView;
@@ -71,9 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         String userID = mAuth.getCurrentUser().getUid();
-//        mDatabase.child("Usuarios").child(userID).child("Juegos").setValue("Aaaaaa");
 
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
