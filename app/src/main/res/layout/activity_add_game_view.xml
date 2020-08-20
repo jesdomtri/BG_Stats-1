@@ -4,52 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateGameView">
+    tools:context=".AddGameView">
+
 
     <Button
-        android:id="@+id/addNewMatch_guv"
+        android:id="@+id/addGame_gav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_game"
-        android:text="@string/add_new_match"
-        android:textColor="@color/flatWetAsphalt"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/matchesList_guv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/deleteGame_guv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/button_game"
-        android:text="@string/delete_game"
+        android:text="@string/add_game"
         android:textColor="@color/flatWetAsphalt"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/matchesList_guv" />
-
-    <Button
-        android:id="@+id/matchesList_guv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/button_game"
-        android:text="@string/see_matches_s_list"
-        android:textColor="@color/flatWetAsphalt"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deleteGame_guv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/addNewMatch_guv" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/titleGame_guv"
+        android:id="@+id/titleGame_gav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -65,80 +38,79 @@
         android:layout_width="296dp"
         android:layout_height="472dp"
         android:background="@color/flatClouds"
-        app:layout_constraintBottom_toTopOf="@+id/addNewMatch_guv"
+        app:layout_constraintBottom_toTopOf="@+id/addGame_gav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleGame_guv"
-        app:layout_constraintVertical_bias="0.508">
+        app:layout_constraintTop_toBottomOf="@+id/titleGame_gav">
 
         <TextView
-            android:id="@+id/totalMatches_guv"
+            android:id="@+id/totalMatches_gav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_games"
             android:textColor="@color/flatBelizeHole"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/totalMatchesCount_guv"
+            app:layout_constraintBottom_toTopOf="@+id/totalMatchesCount_gav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/totalMatchesCount_guv"
+            android:id="@+id/totalMatchesCount_gav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0"
             android:textColor="@color/Black"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/victories_guv"
+            app:layout_constraintBottom_toTopOf="@+id/victories_gav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalMatches_guv" />
+            app:layout_constraintTop_toBottomOf="@+id/totalMatches_gav" />
 
         <TextView
-            android:id="@+id/victories_guv"
+            android:id="@+id/victories_gav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/victories"
             android:textColor="@color/flatNephritis"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/victoriesCount_guv"
+            app:layout_constraintBottom_toTopOf="@+id/victoriesCount_gav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalMatchesCount_guv" />
+            app:layout_constraintTop_toBottomOf="@+id/totalMatchesCount_gav" />
 
         <TextView
-            android:id="@+id/victoriesCount_guv"
+            android:id="@+id/victoriesCount_gav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0"
             android:textColor="@color/Black"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/defeats_guv"
+            app:layout_constraintBottom_toTopOf="@+id/defeats_gav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/victories_guv" />
+            app:layout_constraintTop_toBottomOf="@+id/victories_gav" />
 
         <TextView
-            android:id="@+id/defeats_guv"
+            android:id="@+id/defeats_gav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/defeats"
             android:textColor="@color/flatPomegrante"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/defeatsCount_guv"
+            app:layout_constraintBottom_toTopOf="@+id/defeatsCount_gav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/victoriesCount_guv" />
+            app:layout_constraintTop_toBottomOf="@+id/victoriesCount_gav" />
 
         <TextView
-            android:id="@+id/defeatsCount_guv"
+            android:id="@+id/defeatsCount_gav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0"
@@ -148,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defeats_guv" />
+            app:layout_constraintTop_toBottomOf="@+id/defeats_gav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

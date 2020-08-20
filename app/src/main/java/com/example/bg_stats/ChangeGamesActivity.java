@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.view.Change;
 
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class ChangeGamesActivity extends AppCompatActivity {
         new FirebaseDatabaseHelper().readGames(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Game> games, List<String> keys) {
-                new RecyclerView_Config().setConfig(mRecyclerView, ChangeGamesActivity.this, games, keys);
+                new RecyclerView_Config().setConfig2(mRecyclerView, ChangeGamesActivity.this, games, keys);
             }
 
             @Override

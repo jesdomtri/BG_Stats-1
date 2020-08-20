@@ -1,5 +1,6 @@
 package com.example.bg_stats;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
-public class UpdateGameView extends AppCompatActivity {
+public class AddGameView extends AppCompatActivity {
 
-    private Button addNewMatch, matchesList, deleteGame;
+    private Button addGame;
 
     private TextView titleGame;
 
@@ -31,31 +32,29 @@ public class UpdateGameView extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // Set content view
-        setContentView(R.layout.activity_update_game_view);
+        setContentView(R.layout.activity_add_game_view);
 
         // Getting Intent
         rKey = getIntent().getStringExtra("rKey");
         rTitle = getIntent().getStringExtra("rTitle");
 
         // Attributes
-        addNewMatch = findViewById(R.id.addNewMatch_guv);
-        matchesList = findViewById(R.id.matchesList_guv);
-        deleteGame = findViewById(R.id.deleteGame_guv);
+        addGame = findViewById(R.id.addGame_gav);
 
-        titleGame = findViewById(R.id.titleGame_guv);
+        titleGame = findViewById(R.id.titleGame_gav);
         titleGame.setText(rTitle);
 
-        totalMatchesCount = findViewById(R.id.totalMatchesCount_guv);
-        victoriesCount = findViewById(R.id.victoriesCount_guv);
-        defeatsCount = findViewById(R.id.defeatsCount_guv);
+        totalMatchesCount = findViewById(R.id.totalMatchesCount_gav);
+        victoriesCount = findViewById(R.id.victoriesCount_gav);
+        defeatsCount = findViewById(R.id.defeatsCount_gav);
 
 
-
-        deleteGame.setOnClickListener(new View.OnClickListener() {
+        addGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FirebaseDatabaseHelper().deleteGame(rKey, new FirebaseDatabaseHelper.DataStatus() {
-
+                Game game = new Game();
+                game.setName(titleGame.getText().toString());
+                new FirebaseDatabaseHelper().addGame(game, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Game> games, List<String> keys) {
 
@@ -63,7 +62,15 @@ public class UpdateGameView extends AppCompatActivity {
 
                     @Override
                     public void DataIsInserted() {
+                        Intent home = new Intent(AddGameView.this, HomeActivity.class);
+                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(home);
 
+                        String msg = "" + titleGame.getText().toString() + " has been added successfully.";
+                        Toast.makeText(AddGameView.this, msg, Toast.LENGTH_LONG).show();
+
+                        finish();
                     }
 
                     @Override
@@ -73,15 +80,10 @@ public class UpdateGameView extends AppCompatActivity {
 
                     @Override
                     public void DataIsDeleted() {
-                        String msg = "" + titleGame.getText().toString() + " has been deleted successfully.";
-                        Toast.makeText(UpdateGameView.this, msg, Toast.LENGTH_LONG).show();
-                        finish();
-                        return;
+
                     }
                 });
             }
         });
-
     }
-
 }

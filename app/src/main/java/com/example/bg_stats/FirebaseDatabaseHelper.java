@@ -18,7 +18,8 @@ public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReferenceUsers;
     private DatabaseReference mReferenceGames;
-    private List<Game> games = new ArrayList<>();
+    private List<Game> allGames = new ArrayList<>();
+    private List<Game> userGames = new ArrayList<>();
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
@@ -29,17 +30,43 @@ public class FirebaseDatabaseHelper {
     }
 
     public void readGames(final DataStatus dataStatus) {
-        mReferenceGames.addValueEventListener(new ValueEventListener() {
+
+        mReferenceUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                games.clear();
+                userGames.clear();
                 List<String> keys = new ArrayList<>();
                 for (DataSnapshot keyNode : snapshot.getChildren()) {
                     keys.add(keyNode.getKey());
                     Game game = keyNode.getValue(Game.class);
-                    games.add(game);
+                    userGames.add(game);
                 }
-                dataStatus.DataIsLoaded(games, keys);
+                dataStatus.DataIsLoaded(userGames, keys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        mReferenceGames.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> names = new ArrayList<>();
+                for (Game game : userGames) {
+                    names.add(game.getName());
+                }
+                allGames.clear();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keyNode : snapshot.getChildren()) {
+                    keys.add(keyNode.getKey());
+                    Game game = keyNode.getValue(Game.class);
+                    if (!names.contains(game.getName())) {
+                        allGames.add(game);
+                    }
+                }
+                dataStatus.DataIsLoaded(allGames, keys);
             }
 
             @Override
@@ -72,14 +99,14 @@ public class FirebaseDatabaseHelper {
         mReferenceUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                games.clear();
+                userGames.clear();
                 List<String> keys = new ArrayList<>();
                 for (DataSnapshot keyNode : snapshot.getChildren()) {
                     keys.add(keyNode.getKey());
                     Game game = keyNode.getValue(Game.class);
-                    games.add(game);
+                    userGames.add(game);
                 }
-                dataStatus.DataIsLoaded(games, keys);
+                dataStatus.DataIsLoaded(userGames, keys);
             }
 
             @Override

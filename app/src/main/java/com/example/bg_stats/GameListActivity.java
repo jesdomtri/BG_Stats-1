@@ -2,15 +2,18 @@ package com.example.bg_stats;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -22,8 +25,39 @@ public class GameListActivity extends AppCompatActivity {
     ArrayList<GamePreview> listOfRows;
     ArrayAdapter<GamePreview> itemAdapter;
 
+    private FirebaseAuth mAuth;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent home = new Intent(GameListActivity.this, HomeActivity.class);
+                    startActivity(home);
+                    break;
+                case R.id.navigation_account:
+                    Intent account = new Intent(GameListActivity.this, AccountActivity.class);
+                    startActivity(account);
+                    break;
+                case R.id.navigation_logout:
+                    SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
+                    mAuth.signOut();
+                    Intent login = new Intent(GameListActivity.this, MainActivity.class);
+                    login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(login);
+                    finish();
+                    break;
+            }
+            return false;
+        }
+    };
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
 
         // Initialize DB
         helper = new myDbAdapter(this);
@@ -58,32 +92,4 @@ public class GameListActivity extends AppCompatActivity {
             mDefaultMessage.setVisibility(View.VISIBLE);
         }
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent home = new Intent(GameListActivity.this, HomeActivity.class);
-                    startActivity(home);
-                    break;
-                case R.id.navigation_account:
-                    Intent account = new Intent(GameListActivity.this, AccountActivity.class);
-                    startActivity(account);
-                    break;
-                case R.id.navigation_logout:
-                    SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
-
-                    Intent login = new Intent(GameListActivity.this, MainActivity.class);
-                    login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(login);
-                    finish();
-                    break;
-            }
-            return false;
-        }
-    };
 }

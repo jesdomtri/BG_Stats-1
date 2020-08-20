@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_logout:
                     SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
+                    mAuth.signOut();
                     Intent login = new Intent(HomeActivity.this, MainActivity.class);
                     login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

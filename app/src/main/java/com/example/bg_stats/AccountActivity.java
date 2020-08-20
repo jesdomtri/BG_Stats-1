@@ -46,6 +46,7 @@ public class AccountActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_logout:
                     SaveSharedPreferences.setLoggedIn(getApplicationContext(), false);
+                    mAuth.signOut();
                     Intent login = new Intent(AccountActivity.this, MainActivity.class);
                     login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

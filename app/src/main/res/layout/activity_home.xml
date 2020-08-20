@@ -4,31 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">>
+    android:background="@color/flatEmerald">
 
     <TextView
         android:id="@+id/change_games_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
         android:gravity="center"
         android:text="@string/change_games_home"
         android:textAllCaps="true"
         android:textColor="@color/flatWetAsphalt"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="300dp"
         android:layout_height="500dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="@id/guideline9"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_games_home">
 
         <TextView
@@ -60,53 +62,5 @@
         app:menu="@menu/bottom_nav_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="1.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
