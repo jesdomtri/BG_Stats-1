@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
 public class ChangeGamesActivity extends AppCompatActivity {
 
-    private ValueEventListener eventListener;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
@@ -29,7 +27,6 @@ public class ChangeGamesActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String userID = mAuth.getCurrentUser().getUid();
-//        mDatabase.child("Usuarios").child(userID).child("Juegos").setValue("Aaaaaa");
 
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -57,6 +54,11 @@ public class ChangeGamesActivity extends AppCompatActivity {
 
             @Override
             public void DataIsDeleted() {
+
+            }
+
+            @Override
+            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
             }
         });

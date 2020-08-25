@@ -16,39 +16,26 @@ import java.util.List;
 public class FirebaseDatabaseHelper {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
+    private DatabaseReference mReferenceUserGames;
     private DatabaseReference mReferenceUsers;
     private DatabaseReference mReferenceGames;
+    private DatabaseReference mReferenceMatches;
     private List<Game> allGames = new ArrayList<>();
     private List<Game> userGames = new ArrayList<>();
+    private List<User> allUsers = new ArrayList<>();
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         String userID = mAuth.getCurrentUser().getUid();
-        mReferenceUsers = mDatabase.getReference("Users/" + userID + "/Games");
+        mReferenceUserGames = mDatabase.getReference("Users/" + userID + "/Games");
         mReferenceGames = mDatabase.getReference("Games");
+        mReferenceUsers = mDatabase.getReference("Users/");
     }
 
     public void readGames(final DataStatus dataStatus) {
 
-        mReferenceUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userGames.clear();
-                List<String> keys = new ArrayList<>();
-                for (DataSnapshot keyNode : snapshot.getChildren()) {
-                    keys.add(keyNode.getKey());
-                    Game game = keyNode.getValue(Game.class);
-                    userGames.add(game);
-                }
-                dataStatus.DataIsLoaded(userGames, keys);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        readUserGames(dataStatus);
 
         mReferenceGames.addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,8 +64,8 @@ public class FirebaseDatabaseHelper {
     }
 
     public void addGame(Game game, final DataStatus dataStatus) {
-        String key = mReferenceUsers.push().getKey();
-        mReferenceUsers.child(key).setValue(game).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String key = mReferenceUserGames.push().getKey();
+        mReferenceUserGames.child(key).setValue(game).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsInserted();
@@ -87,7 +74,7 @@ public class FirebaseDatabaseHelper {
     }
 
     public void deleteGame(String key, final DataStatus dataStatus) {
-        mReferenceUsers.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mReferenceUserGames.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 dataStatus.DataIsDeleted();
@@ -95,8 +82,23 @@ public class FirebaseDatabaseHelper {
         });
     }
 
-    public void readUsers(final DataStatus dataStatus) {
-        mReferenceUsers.addValueEventListener(new ValueEventListener() {
+    public void readMatches(FirebaseAuth mAuth, String titleGame, final DataStatus dataStatus) {
+        mReferenceMatches = mDatabase.getReference("Matches/" + mAuth.getCurrentUser().getUid() + "/" + titleGame);
+        mReferenceMatches.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void readUserGames(final DataStatus dataStatus) {
+        mReferenceUserGames.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userGames.clear();
@@ -116,6 +118,27 @@ public class FirebaseDatabaseHelper {
         });
     }
 
+    public void readUsers(final DataStatus dataStatus) {
+        mReferenceUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                allUsers.clear();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keyNode : snapshot.getChildren()) {
+                    keys.add(keyNode.getKey());
+                    User user = keyNode.getValue(User.class);
+                    allUsers.add(user);
+                }
+                dataStatus.UsersAreLoaded(allUsers, keys);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public interface DataStatus {
         void DataIsLoaded(List<Game> games, List<String> keys);
 
@@ -124,6 +147,8 @@ public class FirebaseDatabaseHelper {
         void DataIsUpdated();
 
         void DataIsDeleted();
+
+        void UsersAreLoaded(List<User> allUsers, List<String> keys);
     }
 
 }

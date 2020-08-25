@@ -82,6 +82,11 @@ public class AddGameView extends AppCompatActivity {
                     public void DataIsDeleted() {
 
                     }
+
+                    @Override
+                    public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+                    }
                 });
             }
         });

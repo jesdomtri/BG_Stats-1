@@ -66,8 +66,8 @@ public class HomeActivity extends AppCompatActivity {
         // Show home view
         setContentView(R.layout.activity_home);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.exp_list);
-        new FirebaseDatabaseHelper().readUsers(new FirebaseDatabaseHelper.DataStatus() {
+        mRecyclerView = findViewById(R.id.exp_list);
+        new FirebaseDatabaseHelper().readUserGames(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Game> games, List<String> keys) {
                 new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, games, keys);
@@ -85,6 +85,11 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void DataIsDeleted() {
+
+            }
+
+            @Override
+            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
             }
         });

@@ -1,5 +1,6 @@
 package com.example.bg_stats;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -50,6 +51,15 @@ public class UpdateGameView extends AppCompatActivity {
         defeatsCount = findViewById(R.id.defeatsCount_guv);
 
 
+        addNewMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UpdateGameView.this, AddGameActivity.class);
+                intent.putExtra("rTitle", rTitle);
+                startActivity(intent);
+            }
+        });
+
 
         deleteGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +87,11 @@ public class UpdateGameView extends AppCompatActivity {
                         Toast.makeText(UpdateGameView.this, msg, Toast.LENGTH_LONG).show();
                         finish();
                         return;
+                    }
+
+                    @Override
+                    public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
                     }
                 });
             }
