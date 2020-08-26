@@ -12,17 +12,24 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseDatabaseHelper {
+
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
+
     private DatabaseReference mReferenceUserGames;
     private DatabaseReference mReferenceUsers;
     private DatabaseReference mReferenceGames;
     private DatabaseReference mReferenceMatches;
+
     private List<Game> allGames = new ArrayList<>();
     private List<Game> userGames = new ArrayList<>();
     private List<User> allUsers = new ArrayList<>();
+
+    private Integer totalMatches = 0;
+    private Integer totalWins = 0;
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
@@ -31,6 +38,7 @@ public class FirebaseDatabaseHelper {
         mReferenceUserGames = mDatabase.getReference("Users/" + userID + "/Games");
         mReferenceGames = mDatabase.getReference("Games");
         mReferenceUsers = mDatabase.getReference("Users/");
+        mReferenceMatches = mDatabase.getReference("Matches/");
     }
 
     public void readGames(final DataStatus dataStatus) {
@@ -82,17 +90,54 @@ public class FirebaseDatabaseHelper {
         });
     }
 
-    public void readMatches(FirebaseAuth mAuth, String titleGame, final DataStatus dataStatus) {
-        mReferenceMatches = mDatabase.getReference("Matches/" + mAuth.getCurrentUser().getUid() + "/" + titleGame);
-        mReferenceMatches.addValueEventListener(new ValueEventListener() {
+    public void readMatches(String userId, String titleGame, final DataStatus dataStatus) {
+        mReferenceMatches.child(userId).child(titleGame).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot keyNode : snapshot.getChildren()) {
+                    totalMatches++;
+                    Map<String, Object> map = (Map<String, Object>) keyNode.getValue();
+                    for (Map.Entry<String, Object> entry : map.entrySet()) {
+                        if (entry.getKey().equals("winner")) {
+                            if ((Boolean) entry.getValue()) {
+                                totalWins++;
+                            }
+                        }
+                    }
 
+                }
+                dataStatus.MatchesAreLoaded(totalMatches, totalWins);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    public void addMatch(String userId, String game, String score, Integer position, Boolean winner, final DataStatus dataStatus) {
+        DatabaseReference mReference = mReferenceMatches.child(userId).child(game);
+        String key = mReference.push().getKey();
+
+        mReference.child(key).child("score").setValue(score).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsInserted();
+            }
+        });
+
+        mReference.child(key).child("position").setValue(position).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsInserted();
+            }
+        });
+
+        mReference.child(key).child("winner").setValue(winner).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsInserted();
             }
         });
     }
@@ -147,6 +192,8 @@ public class FirebaseDatabaseHelper {
         void DataIsUpdated();
 
         void DataIsDeleted();
+
+        void MatchesAreLoaded(Integer totalMatches, Integer totalWins);
 
         void UsersAreLoaded(List<User> allUsers, List<String> keys);
     }

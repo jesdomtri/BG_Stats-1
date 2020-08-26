@@ -58,6 +58,11 @@ public class ChangeGamesActivity extends AppCompatActivity {
             }
 
             @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+
+            }
+
+            @Override
             public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
             }

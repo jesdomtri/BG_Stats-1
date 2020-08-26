@@ -18,8 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class AddGameActivity extends AppCompatActivity {
@@ -93,6 +97,11 @@ public class AddGameActivity extends AppCompatActivity {
             }
 
             @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+
+            }
+
+            @Override
             public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
                 userList.clear();
                 userIdList.clear();
@@ -143,15 +152,110 @@ public class AddGameActivity extends AppCompatActivity {
                 if (!(AllChecked)) {
                     Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
                 } else {
-                    // Order position by score
-                    for (int index = 0; index < scores.size(); index++) {
-                        if (scores.get(index).equals("")) {
-                            integerScores.add(-999);
-                        } else {
-                            integerScores.add(Integer.parseInt(scores.get(index)));
+
+                    HashMap<String, Integer> scoreByUser = new HashMap<>();
+
+                    for (int i = 0; i < players.size(); i++) {
+                        if (!players.get(i).equals("") || !scores.get(i).equals("")) {
+                            scoreByUser.put(players.get(i), Integer.valueOf(scores.get(i)));
                         }
                     }
 
+                    Object[] sorting = scoreByUser.entrySet().toArray();
+                    Arrays.sort(sorting, new Comparator() {
+                        public int compare(Object o2, Object o1) {
+                            return ((Map.Entry<String, Integer>) o1).getValue().compareTo(
+                                    ((Map.Entry<String, Integer>) o2).getValue());
+                        }
+                    });
+
+                    LinkedHashMap<String, Integer> sortedScoreByUser = new LinkedHashMap<>();
+
+                    for (Object o : sorting) {
+                        String key = ((Map.Entry<String, Integer>) o).getKey();
+                        Integer value = ((Map.Entry<String, Integer>) o).getValue();
+                        sortedScoreByUser.put(key, value);
+                    }
+
+
+                    Integer position = 0;
+                    for (Map.Entry<String, Integer> entry : sortedScoreByUser.entrySet()) {
+                        String player = entry.getKey();
+                        String score = entry.getValue().toString();
+                        position++;
+
+                        Integer positionUserInUserList = userList.indexOf(player);
+                        String userId = userIdList.get(positionUserInUserList);
+
+                        String gameTitle = getIntent().getStringExtra("rTitle");
+
+                        if (position == 1) {
+                            new FirebaseDatabaseHelper().addMatch(userId, gameTitle, score, position, Boolean.TRUE, new FirebaseDatabaseHelper.DataStatus() {
+                                @Override
+                                public void DataIsLoaded(List<Game> games, List<String> keys) {
+
+                                }
+
+                                @Override
+                                public void DataIsInserted() {
+
+                                }
+
+                                @Override
+                                public void DataIsUpdated() {
+
+                                }
+
+                                @Override
+                                public void DataIsDeleted() {
+
+                                }
+
+                                @Override
+                                public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+
+                                }
+
+                                @Override
+                                public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+                                }
+                            });
+                        } else {
+                            new FirebaseDatabaseHelper().addMatch(userId, gameTitle, score, position, Boolean.FALSE, new FirebaseDatabaseHelper.DataStatus() {
+                                @Override
+                                public void DataIsLoaded(List<Game> games, List<String> keys) {
+
+                                }
+
+                                @Override
+                                public void DataIsInserted() {
+
+                                }
+
+                                @Override
+                                public void DataIsUpdated() {
+
+                                }
+
+                                @Override
+                                public void DataIsDeleted() {
+
+                                }
+
+                                @Override
+                                public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+
+                                }
+
+                                @Override
+                                public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+                                }
+                            });
+                        }
+
+                    }
 
 
                     // Redirect to Home view

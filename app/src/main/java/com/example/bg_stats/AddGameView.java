@@ -10,9 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.List;
 
 public class AddGameView extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     private Button addGame;
 
@@ -48,6 +52,9 @@ public class AddGameView extends AppCompatActivity {
         victoriesCount = findViewById(R.id.victoriesCount_gav);
         defeatsCount = findViewById(R.id.defeatsCount_gav);
 
+        mAuth = FirebaseAuth.getInstance();
+        String userID = mAuth.getCurrentUser().getUid();
+
 
         addGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +87,11 @@ public class AddGameView extends AppCompatActivity {
 
                     @Override
                     public void DataIsDeleted() {
+
+                    }
+
+                    @Override
+                    public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
 
                     }
 

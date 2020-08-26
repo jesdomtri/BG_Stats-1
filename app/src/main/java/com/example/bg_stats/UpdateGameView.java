@@ -10,9 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.List;
 
 public class UpdateGameView extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     private Button addNewMatch, matchesList, deleteGame;
 
@@ -34,6 +38,10 @@ public class UpdateGameView extends AppCompatActivity {
         // Set content view
         setContentView(R.layout.activity_update_game_view);
 
+        // Actual User
+        mAuth = FirebaseAuth.getInstance();
+        String userID = mAuth.getCurrentUser().getUid();
+
         // Getting Intent
         rKey = getIntent().getStringExtra("rKey");
         rTitle = getIntent().getStringExtra("rTitle");
@@ -49,6 +57,41 @@ public class UpdateGameView extends AppCompatActivity {
         totalMatchesCount = findViewById(R.id.totalMatchesCount_guv);
         victoriesCount = findViewById(R.id.victoriesCount_guv);
         defeatsCount = findViewById(R.id.defeatsCount_guv);
+
+        new FirebaseDatabaseHelper().readMatches(userID, rTitle, new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Game> games, List<String> keys) {
+
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+
+            @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+                totalMatchesCount.setText(totalMatches.toString());
+                victoriesCount.setText(totalWins.toString());
+                Integer defeats = totalMatches - totalWins;
+                defeatsCount.setText(defeats.toString());
+            }
+
+            @Override
+            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+            }
+        });
 
 
         addNewMatch.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +130,11 @@ public class UpdateGameView extends AppCompatActivity {
                         Toast.makeText(UpdateGameView.this, msg, Toast.LENGTH_LONG).show();
                         finish();
                         return;
+                    }
+
+                    @Override
+                    public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+
                     }
 
                     @Override
