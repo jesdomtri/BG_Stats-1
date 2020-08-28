@@ -28,15 +28,12 @@ import java.util.Set;
 
 public class AddGameActivity extends AppCompatActivity {
 
-    myDbAdapter helper;
-    String SelectedGame, username, commentary;
+    String username;
     TextView oTextView, oPlayer1;
     ArrayList<String> userList;
     ArrayList<String> userIdList;
     ArrayList<String> scores;
     ArrayList<String> players;
-    ArrayList<String> parameters;
-    ArrayList<Integer> integerScores = new ArrayList<>();
     ArrayAdapter<String> playerAdapter;
     AutoCompleteTextView autoCompleteTextView2, autoCompleteTextView3, autoCompleteTextView4, autoCompleteTextView5, autoCompleteTextView6, autoCompleteTextView7, autoCompleteTextView8;
     EditText score1, score2, score3, score4, score5, score6, score7, score8, extra_text;
@@ -50,10 +47,7 @@ public class AddGameActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        // Initialize DB
-        helper = new myDbAdapter(this);
 
-//        FirebaseAuth.getInstance().listUsers(null);
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
@@ -97,11 +91,6 @@ public class AddGameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
-
-            }
-
-            @Override
             public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
                 userList.clear();
                 userIdList.clear();
@@ -109,6 +98,11 @@ public class AddGameActivity extends AppCompatActivity {
                     userList.add(user.getEmail());
                     userIdList.add(user.getId());
                 }
+            }
+
+            @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
+
             }
         });
 
@@ -212,12 +206,12 @@ public class AddGameActivity extends AppCompatActivity {
                                 }
 
                                 @Override
-                                public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+                                public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
                                 }
 
                                 @Override
-                                public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+                                public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
 
                                 }
                             });
@@ -244,12 +238,12 @@ public class AddGameActivity extends AppCompatActivity {
                                 }
 
                                 @Override
-                                public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+                                public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
                                 }
 
                                 @Override
-                                public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+                                public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
 
                                 }
                             });

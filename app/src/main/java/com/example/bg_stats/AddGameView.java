@@ -55,6 +55,41 @@ public class AddGameView extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String userID = mAuth.getCurrentUser().getUid();
 
+        new FirebaseDatabaseHelper().readMatches(userID, rTitle, new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Game> games, List<String> keys) {
+
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+
+            @Override
+            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+            }
+
+            @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
+                totalMatchesCount.setText(totalMatches.toString());
+                victoriesCount.setText(totalWins.toString());
+                Integer defeats = totalMatches - totalWins;
+                defeatsCount.setText(defeats.toString());
+            }
+        });
+
 
         addGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,12 +126,12 @@ public class AddGameView extends AppCompatActivity {
                     }
 
                     @Override
-                    public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+                    public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
                     }
 
                     @Override
-                    public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+                    public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
 
                     }
                 });

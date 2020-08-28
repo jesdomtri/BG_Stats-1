@@ -80,19 +80,18 @@ public class UpdateGameView extends AppCompatActivity {
             }
 
             @Override
-            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+            }
+
+            @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
                 totalMatchesCount.setText(totalMatches.toString());
                 victoriesCount.setText(totalWins.toString());
                 Integer defeats = totalMatches - totalWins;
                 defeatsCount.setText(defeats.toString());
             }
-
-            @Override
-            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
-
-            }
         });
-
 
         addNewMatch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +102,14 @@ public class UpdateGameView extends AppCompatActivity {
             }
         });
 
+        matchesList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UpdateGameView.this, GameListActivity.class);
+                intent.putExtra("rTitle", rTitle);
+                startActivity(intent);
+            }
+        });
 
         deleteGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,12 +140,12 @@ public class UpdateGameView extends AppCompatActivity {
                     }
 
                     @Override
-                    public void MatchesAreLoaded(Integer totalMatches, Integer totalWins) {
+                    public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
 
                     }
 
                     @Override
-                    public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+                    public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
 
                     }
                 });

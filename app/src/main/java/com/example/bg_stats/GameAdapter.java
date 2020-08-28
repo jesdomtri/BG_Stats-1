@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -31,15 +30,11 @@ public class GameAdapter extends ArrayAdapter<GamePreview> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.game_item, parent, false);
         }
         // Lookup view for data population
-        TextView gameIndex = convertView.findViewById(R.id.gameMain);
-        TextView gamePosition = convertView.findViewById(R.id.gamePlayer);
-        TextView gameWinner = convertView.findViewById(R.id.gameWinner);
+
         // Populate the data into the template view using the data object
         String username = "";
         String indexString = "Game " + (position + 1);
-        gameIndex.setText(indexString);
-        gameWinner.setText(itemGame.getWinner());
-        gamePosition.setText(itemGame.getPosition(username));
+
         // Return the completed view to render on screen
         return convertView;
     }

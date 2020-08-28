@@ -31,6 +31,10 @@ public class FirebaseDatabaseHelper {
     private Integer totalMatches = 0;
     private Integer totalWins = 0;
 
+    private List<Integer> positionMatches = new ArrayList<>();
+    private List<String> scoreMatches = new ArrayList<>();
+    private List<Boolean> winnerMatches = new ArrayList<>();
+
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -99,14 +103,20 @@ public class FirebaseDatabaseHelper {
                     Map<String, Object> map = (Map<String, Object>) keyNode.getValue();
                     for (Map.Entry<String, Object> entry : map.entrySet()) {
                         if (entry.getKey().equals("winner")) {
+                            winnerMatches.add((Boolean) entry.getValue());
                             if ((Boolean) entry.getValue()) {
                                 totalWins++;
                             }
+                        } else if (entry.getKey().equals("position")) {
+                            Long value = (Long) entry.getValue();
+                            positionMatches.add(value.intValue());
+                        } else {
+                            scoreMatches.add((String) entry.getValue());
                         }
                     }
 
                 }
-                dataStatus.MatchesAreLoaded(totalMatches, totalWins);
+                dataStatus.MatchesAreLoaded(totalMatches, totalWins, positionMatches, scoreMatches, winnerMatches);
             }
 
             @Override
@@ -193,9 +203,9 @@ public class FirebaseDatabaseHelper {
 
         void DataIsDeleted();
 
-        void MatchesAreLoaded(Integer totalMatches, Integer totalWins);
-
         void UsersAreLoaded(List<User> allUsers, List<String> keys);
+
+        void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches);
     }
 
 }

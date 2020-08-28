@@ -3,7 +3,6 @@ package com.example.bg_stats;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -11,11 +10,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameListActivity extends AppCompatActivity {
 
@@ -26,6 +27,9 @@ public class GameListActivity extends AppCompatActivity {
     ArrayAdapter<GamePreview> itemAdapter;
 
     private FirebaseAuth mAuth;
+
+    private RecyclerView mRecyclerView;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -58,6 +62,7 @@ public class GameListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
+        String userID = mAuth.getUid();
 
         // Initialize DB
         helper = new myDbAdapter(this);
@@ -75,21 +80,49 @@ public class GameListActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // Set title
-        String selectedGame = getIntent().getStringExtra("Game_name");
-        String gameTitle = selectedGame + " game list";
+        String selectedGame = getIntent().getStringExtra("rTitle");
         oTitleView = findViewById(R.id.gamelist_title);
-        oTitleView.setText(gameTitle);
+        oTitleView.setText(selectedGame);
 
         // Set adapter
-        oGameList = findViewById(R.id.gameList);
-        String username = "";
-        listOfRows = helper.getGamesPlayedByUserAndGame(username, selectedGame);
-        itemAdapter = new GameAdapter(this,R.layout.game_item, listOfRows);
-        oGameList.setAdapter(itemAdapter);
+        mRecyclerView = findViewById(R.id.gameList);
+        new FirebaseDatabaseHelper().readMatches(userID, selectedGame, new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Game> games, List<String> keys) {
 
-        if (listOfRows.isEmpty()) {
-            mDefaultMessage = findViewById(R.id.defaultText2);
-            mDefaultMessage.setVisibility(View.VISIBLE);
-        }
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+
+            @Override
+            public void UsersAreLoaded(List<User> allUsers, List<String> keys) {
+
+            }
+
+            @Override
+            public void MatchesAreLoaded(Integer totalMatches, Integer totalWins, List<Integer> positionMatches, List<String> scoreMatches, List<Boolean> winnerMatches) {
+                List<Match> newMatchesList = new ArrayList<>();
+                for (int i = 0; i < positionMatches.size(); i++) {
+                    Match match = new Match(scoreMatches.get(i), positionMatches.get(i), winnerMatches.get(i));
+                    newMatchesList.add(match);
+                }
+                new RecyclerView_Config().setConfigMatches(mRecyclerView, GameListActivity.this, newMatchesList);
+            }
+        });
+
+
     }
 }
