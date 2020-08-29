@@ -1,22 +1,20 @@
 <resources>
     <string name="app_name">Boardgame Stats</string>
     <string name="login_title">Login</string>
-    <string name="login_username">Username</string>
-    <string name="login_hint_user">Enter your username</string>
+    <string name="login_username">Email</string>
+    <string name="login_hint_user">Enter your email</string>
     <string name="login_password">Password</string>
     <string name="login_hint_pass">Enter your password</string>
     <string name="login_connect">Login</string>
     <string name="login_register">Create your account here</string>
     <string name="sign_up_title">Sign up</string>
-    <string name="sign_up_question">What is your favourite board game?</string>
-    <string name="sign_up_hint">Make it easy like "Carcassone"</string>
     <string name="sign_up_button">Done</string>
     <string name="title_home">Home</string>
     <string name="menu_account">Account</string>
     <string name="menu_logout">Log out</string>
     <string name="menu_utility">Utilities</string>
     <string name="default_message_home">No games added yet :(</string>
-    <string name="change_games_home">Change your game list</string>
+    <string name="change_games_home">Change your game´s list here</string>
     <string name="change_username">Change username</string>
     <string name="change_password">Change password</string>
     <string name="change_question">Change secret question</string>
@@ -41,8 +39,6 @@
     <string name="dice12">12-sided</string>
     <string name="dice20">20-sided</string>
     <string name="dice_number">Dices</string>
-    <string name="dialog_newUsername">Enter your new username</string>
-    <string name="dialog_newPassword">Enter your new password</string>
     <string name="defeats">Defeats</string>
     <string name="total_games">Total Games</string>
     <string name="delete_game">Delete game</string>

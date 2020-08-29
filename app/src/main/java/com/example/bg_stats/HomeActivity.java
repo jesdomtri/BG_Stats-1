@@ -70,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
         new FirebaseDatabaseHelper().readUserGames(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Game> games, List<String> keys) {
+                findViewById(R.id.loading_your_games).setVisibility(View.GONE);
                 new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, games, keys);
             }
 
