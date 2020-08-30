@@ -80,6 +80,9 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
                 new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, games, keys);
+                if (games.isEmpty()) {
+                    findViewById(R.id.noGames_home).setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

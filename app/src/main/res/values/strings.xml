@@ -47,5 +47,6 @@
     <string name="victories">Victories</string>
     <string name="see_matches_s_list">See matches\'s list</string>
     <string name="add_new_match">Add new match</string>
+    <string name="no_games">The game´s list is empty.</string>
 
 </resources>
