@@ -93,33 +93,33 @@ public class RecyclerView_Config {
             mSubScore = itemView.findViewById(R.id.sub_score_aci);
         }
 
-        public void bind(ActualPlayer actualPlayer) {
-            mAddScore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!mScore.getText().toString().equals("")) {
-                        Integer value = Integer.valueOf(mScore.getText().toString()) + 1;
-                        mScore.setText(value.toString());
-                    } else {
-                        Integer value = 1;
-                        mScore.setText(value.toString());
-                    }
-                }
-            });
-
-            mSubScore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!mScore.getText().toString().equals("")) {
-                        Integer value = Integer.valueOf(mScore.getText().toString()) - 1;
-                        mScore.setText(value.toString());
-                    } else {
-                        Integer value = -1;
-                        mScore.setText(value.toString());
-                    }
-                }
-            });
-        }
+//        public void bind(ActualPlayer actualPlayer) {
+//            mAddScore.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (!mScore.getText().toString().equals("")) {
+//                        Integer value = Integer.valueOf(mScore.getText().toString()) + 1;
+//                        mScore.setText(value.toString());
+//                    } else {
+//                        Integer value = 1;
+//                        mScore.setText(value.toString());
+//                    }
+//                }
+//            });
+//
+//            mSubScore.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (!mScore.getText().toString().equals("")) {
+//                        Integer value = Integer.valueOf(mScore.getText().toString()) - 1;
+//                        mScore.setText(value.toString());
+//                    } else {
+//                        Integer value = -1;
+//                        mScore.setText(value.toString());
+//                    }
+//                }
+//            });
+//        }
 
     }
 
@@ -220,6 +220,16 @@ public class RecyclerView_Config {
         @Override
         public int getItemCount() {
             return mActualPlayerList.size();
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return position;
         }
     }
 

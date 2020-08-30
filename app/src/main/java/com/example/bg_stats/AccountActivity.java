@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AccountActivity extends AppCompatActivity {
@@ -73,8 +75,8 @@ public class AccountActivity extends AppCompatActivity {
         String password = "**********";
         long stamp = mAuth.getCurrentUser().getMetadata().getCreationTimestamp();
         Date date = new Date(stamp);
-//        DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-//        String strDate = dateFormat.format(date);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = dateFormat.format(date);
 
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -98,7 +100,7 @@ public class AccountActivity extends AppCompatActivity {
         uidUser_acc.setText(userID);
 
         dateUser_acc = findViewById(R.id.dateUser_acc);
-        dateUser_acc.setText(date.toString());
+        dateUser_acc.setText(strDate);
 
         buttonPassword_acc = findViewById(R.id.buttonPassword_acc);
         buttonPassword_acc.setOnClickListener(new View.OnClickListener() {
