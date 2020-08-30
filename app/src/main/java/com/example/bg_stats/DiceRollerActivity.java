@@ -1,13 +1,14 @@
 package com.example.bg_stats;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -77,7 +78,6 @@ public class DiceRollerActivity extends AppCompatActivity {
 
     private ArrayList<ListEntity> getArrayItems(int index, Integer diceCount) {
         ArrayList<ListEntity> listItems = new ArrayList<>();
-        //listItems.add(new Entidad(R.drawable.d6_1));
 
         for (int i = 0; i < diceCount; i++) {
             if (index == 0) {

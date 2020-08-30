@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class RecyclerView_Config {
     private GamesAdapter mGamesAdapter;
     private GamesAdapter2 mGamesAdapter2;
     private MatchesAdapter mMatchesAdapter;
+    private ActualPlayerAdapter mActualPlayerAdapter;
 
     public void setConfig(RecyclerView recyclerView, Context context, List<Game> games, List<String> keys) {
         mContext = context;
@@ -39,6 +42,13 @@ public class RecyclerView_Config {
         mMatchesAdapter = new MatchesAdapter(matches);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(mMatchesAdapter);
+    }
+
+    public void setConfigPlayers(RecyclerView recyclerView, Context context, List<ActualPlayer> actualPLayers) {
+        mContext = context;
+        mActualPlayerAdapter = new ActualPlayerAdapter(actualPLayers);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(mActualPlayerAdapter);
     }
 
     class GameItemView extends RecyclerView.ViewHolder {
@@ -66,6 +76,41 @@ public class RecyclerView_Config {
             mTitle.setText(game.getName());
             this.key = key;
         }
+    }
+
+    class ActualPlayerItemView extends RecyclerView.ViewHolder {
+        private EditText mName;
+        private EditText mScore;
+        private Button mAddScore;
+        private Button mSubScore;
+
+        public ActualPlayerItemView(ViewGroup parent) {
+            super(LayoutInflater.from(mContext).inflate(R.layout.actual_player_item, parent, false));
+
+            mName = itemView.findViewById(R.id.actual_name_aci);
+            mScore = itemView.findViewById(R.id.actual_score_aci);
+            mAddScore = itemView.findViewById(R.id.add_score_aci);
+            mSubScore = itemView.findViewById(R.id.sub_score_aci);
+        }
+
+        public void bind(ActualPlayer actualPlayer) {
+            mAddScore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Integer value = Integer.valueOf(mScore.getText().toString()) + 1;
+                    mScore.setText(value.toString());
+                }
+            });
+
+            mSubScore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Integer value = Integer.valueOf(mScore.getText().toString()) - 1;
+                    mScore.setText(value.toString());
+                }
+            });
+        }
+
     }
 
     class MatchItemView extends RecyclerView.ViewHolder {
@@ -117,6 +162,44 @@ public class RecyclerView_Config {
         @Override
         public int getItemCount() {
             return mGameList.size();
+        }
+    }
+
+    class ActualPlayerAdapter extends RecyclerView.Adapter<ActualPlayerItemView> {
+        private List<ActualPlayer> mActualPlayerList;
+
+        public ActualPlayerAdapter(List<ActualPlayer> mActualPlayerList) {
+            this.mActualPlayerList = mActualPlayerList;
+        }
+
+        @NonNull
+        @Override
+        public ActualPlayerItemView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new ActualPlayerItemView(parent);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ActualPlayerItemView holder, int position) {
+            holder.mAddScore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Integer value = Integer.valueOf(holder.mScore.getText().toString()) + 1;
+                    holder.mScore.setText(value.toString());
+                }
+            });
+
+            holder.mSubScore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Integer value = Integer.valueOf(holder.mScore.getText().toString()) - 1;
+                    holder.mScore.setText(value.toString());
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return mActualPlayerList.size();
         }
     }
 

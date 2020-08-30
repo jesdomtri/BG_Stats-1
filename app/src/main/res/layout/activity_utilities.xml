@@ -35,16 +35,18 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/recordingScores"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:onClick="onRecordingScoresClick"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/chronometer"
         app:layout_constraintTop_toBottomOf="@+id/magicArena"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/magic_arena"
+        tools:srcCompat="@drawable/magic_arena" />
 
     <ImageView
         android:id="@+id/magicArena"
@@ -52,7 +54,7 @@
         android:layout_height="150dp"
         android:onClick="onMagicArenaClick"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toTopOf="@+id/recordingScores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/diceRoll"
@@ -81,7 +83,7 @@
         android:onClick="onChronometerClick"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/recordingScores"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diceRoll"

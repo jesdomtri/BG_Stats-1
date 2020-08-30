@@ -53,6 +53,11 @@ public class UtilitiesActivity extends AppCompatActivity {
         startActivity(diceRoll);
     }
 
+    public void onRecordingScoresClick(View view) {
+        Intent recordScores = new Intent(UtilitiesActivity.this, com.example.bg_stats.recordScores.class);
+        startActivity(recordScores);
+    }
+
 
     public void onMagicArenaClick(View view) {
         Intent magicArena = new Intent(UtilitiesActivity.this, MagicArenaActivity.class);
