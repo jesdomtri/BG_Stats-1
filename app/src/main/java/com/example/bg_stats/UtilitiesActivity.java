@@ -54,7 +54,7 @@ public class UtilitiesActivity extends AppCompatActivity {
     }
 
     public void onRecordingScoresClick(View view) {
-        Intent recordScores = new Intent(UtilitiesActivity.this, com.example.bg_stats.recordScores.class);
+        Intent recordScores = new Intent(UtilitiesActivity.this, RecordScores.class);
         startActivity(recordScores);
     }
 

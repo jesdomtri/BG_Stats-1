@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class recordScores extends AppCompatActivity {
+public class RecordScores extends AppCompatActivity {
 
     private EditText number_players_rs;
     private RecyclerView list_players_rs;
@@ -29,6 +29,8 @@ public class recordScores extends AppCompatActivity {
         setContentView(R.layout.activity_record_scores);
 
         List<ActualPlayer> listPlayers = new ArrayList<>();
+        ActualPlayer new_player = new ActualPlayer("", 0);
+        listPlayers.add(new_player);
 
         number_players_rs = findViewById(R.id.number_players_rs);
         number_players_rs.addTextChangedListener(new TextWatcher() {
@@ -45,16 +47,18 @@ public class recordScores extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 listPlayers.clear();
-                Integer num_players = Integer.valueOf(number_players_rs.getText().toString());
-                for (int i = 0; i < num_players; i++) {
-                    ActualPlayer new_player = new ActualPlayer("Name", 0);
-                    listPlayers.add(new_player);
+                if (!number_players_rs.getText().toString().equals("")) {
+                    Integer num_players = Integer.valueOf(number_players_rs.getText().toString());
+                    for (int i = 0; i < num_players; i++) {
+                        ActualPlayer new_player = new ActualPlayer("", 0);
+                        listPlayers.add(new_player);
+                    }
                 }
             }
         });
 
         list_players_rs = findViewById(R.id.list_players_rs);
-        new RecyclerView_Config().setConfigPlayers(list_players_rs, recordScores.this, listPlayers);
+        new RecyclerView_Config().setConfigPlayers(list_players_rs, RecordScores.this, listPlayers);
 
     }
 }

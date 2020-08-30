@@ -97,16 +97,26 @@ public class RecyclerView_Config {
             mAddScore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Integer value = Integer.valueOf(mScore.getText().toString()) + 1;
-                    mScore.setText(value.toString());
+                    if (!mScore.getText().toString().equals("")) {
+                        Integer value = Integer.valueOf(mScore.getText().toString()) + 1;
+                        mScore.setText(value.toString());
+                    } else {
+                        Integer value = 1;
+                        mScore.setText(value.toString());
+                    }
                 }
             });
 
             mSubScore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Integer value = Integer.valueOf(mScore.getText().toString()) - 1;
-                    mScore.setText(value.toString());
+                    if (!mScore.getText().toString().equals("")) {
+                        Integer value = Integer.valueOf(mScore.getText().toString()) - 1;
+                        mScore.setText(value.toString());
+                    } else {
+                        Integer value = -1;
+                        mScore.setText(value.toString());
+                    }
                 }
             });
         }
@@ -183,16 +193,26 @@ public class RecyclerView_Config {
             holder.mAddScore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Integer value = Integer.valueOf(holder.mScore.getText().toString()) + 1;
-                    holder.mScore.setText(value.toString());
+                    if (!holder.mScore.getText().toString().equals("")) {
+                        Integer value = Integer.valueOf(holder.mScore.getText().toString()) + 1;
+                        holder.mScore.setText(value.toString());
+                    } else {
+                        Integer value = 1;
+                        holder.mScore.setText(value.toString());
+                    }
                 }
             });
 
             holder.mSubScore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Integer value = Integer.valueOf(holder.mScore.getText().toString()) - 1;
-                    holder.mScore.setText(value.toString());
+                    if (!holder.mScore.getText().toString().equals("")) {
+                        Integer value = Integer.valueOf(holder.mScore.getText().toString()) - 1;
+                        holder.mScore.setText(value.toString());
+                    } else {
+                        Integer value = -1;
+                        holder.mScore.setText(value.toString());
+                    }
                 }
             });
         }

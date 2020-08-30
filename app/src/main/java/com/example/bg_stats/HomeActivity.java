@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -71,6 +73,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void DataIsLoaded(List<Game> games, List<String> keys) {
                 findViewById(R.id.loading_your_games).setVisibility(View.GONE);
+                Collections.sort(games, new Comparator<Game>() {
+                    @Override
+                    public int compare(Game o1, Game o2) {
+                        return (o1.getName().compareTo(o2.getName()));
+                    }
+                });
                 new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, games, keys);
             }
 

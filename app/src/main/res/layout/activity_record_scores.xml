@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recordScores">
+    tools:context=".RecordScores">
 
     <EditText
         android:id="@+id/number_players_rs"
@@ -16,7 +16,6 @@
         android:gravity="center"
         android:hint="Write number of players here"
         android:inputType="number"
-        android:text="0"
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/white"
@@ -36,4 +35,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number_players_rs" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
