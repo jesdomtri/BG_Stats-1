@@ -1,18 +1,21 @@
 package com.example.bg_stats;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button b1;
     EditText et1, et2;
-    TextView vt1;
+    TextView vt1, forgot_password;
 
     private FirebaseAuth mAuth;
 
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (SaveSharedPreferences.getLoggedStatus(MainActivity.this) == true){
+        if (SaveSharedPreferences.getLoggedStatus(MainActivity.this) == true) {
             // Redirect to Home View
             Intent home = new Intent(MainActivity.this, HomeActivity.class);
             home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -65,13 +68,46 @@ public class MainActivity extends AppCompatActivity {
             et1 = findViewById(R.id.input_username);
             et2 = findViewById(R.id.input_password);
             vt1 = findViewById(R.id.login_register);
-
+            forgot_password = findViewById(R.id.forgot_your_password_text);
 
             vt1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent sign_up = new Intent(MainActivity.this, SignUpActivity.class);
                     startActivity(sign_up);
+                }
+            });
+
+            forgot_password.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View view = inflater.inflate(R.layout.dialog_password, null);
+                    final EditText email = view.findViewById(R.id.input_email_change_password);
+
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setView(view)
+                            .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    mAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(MainActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            })
+                            .show();
+
                 }
             });
 
@@ -110,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             });

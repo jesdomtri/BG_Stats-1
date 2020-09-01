@@ -106,15 +106,14 @@ public class AccountActivity extends AppCompatActivity {
         buttonPassword_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(AccountActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AccountActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
