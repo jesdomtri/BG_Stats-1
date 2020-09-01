@@ -85,20 +85,25 @@ public class MainActivity extends AppCompatActivity {
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View view = inflater.inflate(R.layout.dialog_password, null);
                     final EditText email = view.findViewById(R.id.input_email_change_password);
+                    String finalEmail = email.getText().toString();
 
                     new AlertDialog.Builder(MainActivity.this)
                             .setView(view)
                             .setPositiveButton(R.string.add_changes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int id) {
-                                    mAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Toast.makeText(MainActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                    if (finalEmail.equals("")) {
+                                        Toast.makeText(MainActivity.this, "Email is empty.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        mAuth.sendPasswordResetEmail(finalEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(MainActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
                                 }
                             })
                             .setNegativeButton(R.string.cancel_changes, new DialogInterface.OnClickListener() {
