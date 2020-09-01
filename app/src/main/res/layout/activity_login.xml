@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -147,9 +148,23 @@
         android:layout_marginBottom="16dp"
         android:text="@string/login_register"
         android:textColor="@color/flatWetAsphalt"
-        app:layout_constraintBottom_toTopOf="@+id/forgot_your_password_text"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/decoration1"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/decoration1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="-"
+        android:textColor="@color/flatWetAsphalt"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/forgot_your_password_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/login_register" />
 
     <TextView
         android:id="@+id/forgot_your_password_text"
@@ -160,7 +175,8 @@
         android:textColor="@color/flatWetAsphalt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/decoration1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
