@@ -54,7 +54,7 @@ public class DiceRollerActivity extends AppCompatActivity {
         lessNumber.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Integer number = Integer.parseInt((String) diceCount.getText());
-                if (number > 0) {
+                if (number > 1) {
                     diceCount.setText(Integer.toString((number - 1)));
                 }
             }

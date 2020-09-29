@@ -38,7 +38,7 @@
     <string name="dice6">6-sided</string>
     <string name="dice12">12-sided</string>
     <string name="dice20">20-sided</string>
-    <string name="dice_number">Dices</string>
+    <string name="dice_number">Dices: </string>
     <string name="defeats">Defeats</string>
     <string name="total_games">Total Games</string>
     <string name="delete_game">Delete game</string>
@@ -51,5 +51,17 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="did_you_forget_your_password">Did you forget your password?</string>
     <string name="you_will_receive_an_email_with_information_and_a_link_to_reset_your_password">You will receive an email with information and a link to reset your password</string>
+    <string name="chronometer_title_activity">Chronometer</string>
+    <string name="add">Add</string>
+    <string name="choose_one">Choose one:</string>
+    <string name="number_1">1</string>
+    <string name="subtract">Subtract</string>
+    <string name="dice_roll">Dice Roll</string>
+    <string name="magic_arena_title">Magic Arena</string>
+    <string name="_20">20</string>
+    <string name="add_1_magic">+1</string>
+    <string name="sub_5_magic">-5</string>
+    <string name="sub_1_magic">-1</string>
+    <string name="add_5_magic">+5</string>
 
 </resources>
