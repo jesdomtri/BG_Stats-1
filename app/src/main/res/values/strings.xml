@@ -63,5 +63,15 @@
     <string name="sub_5_magic">-5</string>
     <string name="sub_1_magic">-1</string>
     <string name="add_5_magic">+5</string>
+    <string name="email_account_activity">Email:</string>
+    <string name="data_of_your_account_account_activity">Data of your account</string>
+    <string name="email_dominio_com_account_activity">email@dominio.com</string>
+    <string name="password_account_activity">Password:</string>
+    <string name="password_account_activity2">password</string>
+    <string name="change_account_activity">Change</string>
+    <string name="uid_account_activity">UID:</string>
+    <string name="dsnajdksal_k_account_activity">dsnajdksal;k</string>
+    <string name="creation_s_date_account_activity">Creation\'s Date:</string>
+    <string name="_13_sep_2020_account_activity">13 Sep 2020</string>
 
 </resources>

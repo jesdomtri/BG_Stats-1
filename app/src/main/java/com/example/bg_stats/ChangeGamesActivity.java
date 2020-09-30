@@ -75,6 +75,9 @@ public class ChangeGamesActivity extends AppCompatActivity {
         });
 
         searchView = findViewById(R.id.searchGame);
+        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(R.id.search_src_text);
+        searchAutoComplete.setHintTextColor(getResources().getColor(R.color.draculaForeground));
+        searchAutoComplete.setTextColor(getResources().getColor(R.color.draculaForeground));
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

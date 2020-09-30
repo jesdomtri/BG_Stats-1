@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,6 +64,26 @@ public class DiceRollerActivity extends AppCompatActivity {
 
         //List of dices
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int index = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
+                switch (index) {
+                    case 0:
+                        Toast.makeText(DiceRollerActivity.this, "6-sided dice was selected.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(DiceRollerActivity.this, "12-sided dice was selected.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(DiceRollerActivity.this, "20-sided dice was selected.", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
         button_dice_roll = (Button) findViewById(R.id.button_dice_roll);
 
         button_dice_roll.setOnClickListener(new View.OnClickListener() {

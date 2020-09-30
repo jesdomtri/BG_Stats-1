@@ -125,6 +125,7 @@ public class AddGameActivity extends AppCompatActivity {
 
                 // Check text given by user
                 boolean AllChecked = true;
+                Integer number_players = 0;
                 String error = "";
                 for (int index = 0; index < players.size(); index++) {
                     if (userList.contains(players.get(index)) && (scores.get(index).equals(""))) { // User correct, void score
@@ -135,10 +136,15 @@ public class AddGameActivity extends AppCompatActivity {
                         AllChecked = false;
                     } else if (players.get(index).equals("")) { // User void
                         scores.set(index, "");
+                        number_players += 1;
                     } else if (!(userList.contains(players.get(index)))) {
                         error += "User '" + players.get(index) + "' does not exist \n";
                         AllChecked = false;
                     }
+                }
+                if (number_players == players.size() - 1) {
+                    AllChecked = false;
+                    error += "There must be at least 2 players";
                 }
 
 
