@@ -6,6 +6,168 @@
     android:layout_height="match_parent"
     android:background="@color/draculaBackground">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout30"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout27"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout28">
+
+        <ImageView
+            android:id="@+id/chronometer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:onClick="onChronometerClick"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/chronometer_utilities_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/chronometer_background"
+            tools:srcCompat="@drawable/chronometer_background" />
+
+        <TextView
+            android:id="@+id/chronometer_utilities_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chronometer_utilities_activity"
+            android:textColor="@color/draculaCyan"
+            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chronometer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout29"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout28"
+        app:layout_constraintTop_toBottomOf="@+id/title_account">
+
+        <ImageView
+            android:id="@+id/magicArena"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:onClick="onMagicArenaClick"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/magic_arena_utilities_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/magic_arena"
+            tools:srcCompat="@drawable/magic_arena" />
+
+        <TextView
+            android:id="@+id/magic_arena_utilities_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/magic_arena_utilities_activity"
+            android:textColor="@color/draculaCyan"
+            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/magicArena" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout28"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout30"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout29"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_account">
+
+        <TextView
+            android:id="@+id/dice_roll_utilities_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dice_roll_utilities_activity"
+            android:textColor="@color/draculaCyan"
+            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diceRoll" />
+
+        <ImageView
+            android:id="@+id/diceRoll"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:onClick="onDiceRollClick"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/dice_roll_utilities_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/diceroller"
+            tools:srcCompat="@drawable/diceroller" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout27"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout30"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout29">
+
+        <ImageView
+            android:id="@+id/recordingScores"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:onClick="onRecordingScoresClick"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/score_points_utilities_activity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/score_points"
+            tools:srcCompat="@drawable/score_points" />
+
+        <TextView
+            android:id="@+id/score_points_utilities_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score_points_utilities_activity"
+            android:textColor="@color/draculaCyan"
+            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/roboto_condensed_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recordingScores" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/title_account"
         android:layout_width="0dp"
@@ -13,7 +175,7 @@
         android:background="@color/draculaBackgroundTitle"
         android:fontFamily="@font/roboto_condensed_bold"
         android:gravity="center"
-        android:text="Utilities"
+        android:text="@string/utilities_activity"
         android:textAllCaps="true"
         android:textColor="@color/draculaPink"
         android:textSize="18sp"
@@ -35,61 +197,5 @@
         app:menu="@menu/bottom_nav_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <ImageView
-        android:id="@+id/recordingScores"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:onClick="onRecordingScoresClick"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/chronometer"
-        app:layout_constraintTop_toBottomOf="@+id/magicArena"
-        app:srcCompat="@drawable/score_points"
-        tools:srcCompat="@drawable/score_points" />
-
-    <ImageView
-        android:id="@+id/magicArena"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:onClick="onMagicArenaClick"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/recordingScores"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/diceRoll"
-        app:layout_constraintTop_toBottomOf="@+id/title_account"
-        app:srcCompat="@drawable/magic_arena"
-        tools:srcCompat="@drawable/magic_arena" />
-
-    <ImageView
-        android:id="@+id/diceRoll"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:onClick="onDiceRollClick"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/chronometer"
-        app:layout_constraintEnd_toStartOf="@+id/magicArena"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_account"
-        app:srcCompat="@drawable/diceroller"
-        tools:srcCompat="@drawable/diceroller" />
-
-    <ImageView
-        android:id="@+id/chronometer"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:onClick="onChronometerClick"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toStartOf="@+id/recordingScores"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diceRoll"
-        app:srcCompat="@drawable/chronometer_background"
-        tools:srcCompat="@drawable/chronometer_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

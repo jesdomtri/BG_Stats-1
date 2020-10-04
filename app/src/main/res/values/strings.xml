@@ -14,7 +14,7 @@
     <string name="menu_logout">Log out</string>
     <string name="menu_utility">Utilities</string>
     <string name="default_message_home">No games added yet :(</string>
-    <string name="change_games_home">Change your game´s list here</string>
+    <string name="change_games_home">Click here to change game´s list</string>
     <string name="change_username">Change username</string>
     <string name="change_password">Change password</string>
     <string name="change_question">Change secret question</string>
@@ -73,5 +73,10 @@
     <string name="dsnajdksal_k_account_activity">dsnajdksal;k</string>
     <string name="creation_s_date_account_activity">Creation\'s Date:</string>
     <string name="_13_sep_2020_account_activity">13 Sep 2020</string>
+    <string name="dice_roll_utilities_activity">Dice Roll</string>
+    <string name="magic_arena_utilities_activity">Magic Arena</string>
+    <string name="chronometer_utilities_activity">Chronometer</string>
+    <string name="score_points_utilities_activity">Score Points</string>
+    <string name="utilities_activity">Utilities</string>
 
 </resources>

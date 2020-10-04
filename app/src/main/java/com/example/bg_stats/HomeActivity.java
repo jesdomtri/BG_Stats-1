@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,6 +61,10 @@ public class HomeActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         String userID = mAuth.getCurrentUser().getUid();
+
+        if(userID.equals("sqAQj1peQBhSMgJM1OAIdVTw3wz1")){
+            Toast.makeText(HomeActivity.this, "Juanma, ¿eres bobo o qué?. Lee el título.", Toast.LENGTH_LONG).show();
+        }
 
         // Hide the title
         requestWindowFeature(Window.FEATURE_NO_TITLE);

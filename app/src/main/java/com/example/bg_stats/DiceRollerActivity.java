@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,10 @@ public class DiceRollerActivity extends AppCompatActivity {
     private Button button_dice_roll;
 
     private RadioGroup radioGroup;
+    private RadioButton dice6Sided;
+    private RadioButton dice12Sided;
+    private RadioButton dice20Sided;
+
     private ListView dices;
     private ListAdapter listAdapter;
 
@@ -42,6 +47,11 @@ public class DiceRollerActivity extends AppCompatActivity {
         diceCount = (TextView) findViewById(R.id.diceCount);
         plusNumber = (Button) findViewById(R.id.plusNumber);
         lessNumber = (Button) findViewById(R.id.lessNumber);
+
+        //RadioButtons
+        dice6Sided = (RadioButton) findViewById(R.id.dice6Sided);
+        dice12Sided = (RadioButton) findViewById(R.id.dice12Sided);
+        dice20Sided = (RadioButton) findViewById(R.id.dice20Sided);
 
         plusNumber.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -70,13 +80,19 @@ public class DiceRollerActivity extends AppCompatActivity {
                 int index = radioGroup.indexOfChild(findViewById(radioGroup.getCheckedRadioButtonId()));
                 switch (index) {
                     case 0:
-                        Toast.makeText(DiceRollerActivity.this, "6-sided dice was selected.", Toast.LENGTH_SHORT).show();
+                        dice6Sided.setButtonDrawable(R.drawable.d6_50px_pressed);
+                        dice12Sided.setButtonDrawable(R.drawable.d12_50px);
+                        dice20Sided.setButtonDrawable(R.drawable.d20_50px);
                         break;
                     case 1:
-                        Toast.makeText(DiceRollerActivity.this, "12-sided dice was selected.", Toast.LENGTH_SHORT).show();
+                        dice6Sided.setButtonDrawable(R.drawable.d6_50px);
+                        dice12Sided.setButtonDrawable(R.drawable.d12_50px_pressed);
+                        dice20Sided.setButtonDrawable(R.drawable.d20_50px);
                         break;
                     case 2:
-                        Toast.makeText(DiceRollerActivity.this, "20-sided dice was selected.", Toast.LENGTH_SHORT).show();
+                        dice6Sided.setButtonDrawable(R.drawable.d6_50px);
+                        dice12Sided.setButtonDrawable(R.drawable.d12_50px);
+                        dice20Sided.setButtonDrawable(R.drawable.d20_50px_pressed);
                         break;
                     default:
                         break;

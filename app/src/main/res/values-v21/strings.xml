@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dice_roll_utilities_activity">Dice Roll</string>
+    <string name="magic_arena_utilities_activity">Magic Arena</string>
+    <string name="chronometer_utilities_activity">Chronometer</string>
+    <string name="score_points_utilities_activity">Score Points</string>
+    <string name="utilities_activity">Utilities</string>
+</resources>
