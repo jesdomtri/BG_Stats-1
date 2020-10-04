@@ -1,6 +1,6 @@
 package com.example.bg_stats;
 
-public class Game {
+public class Game implements Comparable<Game> {
 
     private String name;
 
@@ -17,5 +17,10 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Game o) {
+        return this.name.compareTo(o.name);
     }
 }

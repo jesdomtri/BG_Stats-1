@@ -49,6 +49,12 @@ public class RecordScores extends AppCompatActivity {
                 listPlayers.clear();
                 if (!number_players_rs.getText().toString().equals("")) {
                     Integer num_players = Integer.valueOf(number_players_rs.getText().toString());
+                    if (num_players < 1) {
+                        number_players_rs.setText("1");
+                    }
+                    if (num_players > 30) {
+                        number_players_rs.setText("30");
+                    }
                     for (int i = 0; i < num_players; i++) {
                         ActualPlayer new_player = new ActualPlayer("", 0);
                         listPlayers.add(new_player);

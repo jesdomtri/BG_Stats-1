@@ -15,9 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -78,13 +82,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void DataIsLoaded(List<Game> games, List<String> keys) {
                 findViewById(R.id.loading_your_games).setVisibility(View.GONE);
-                Collections.sort(games, new Comparator<Game>() {
-                    @Override
-                    public int compare(Game o1, Game o2) {
-                        return (o1.getName().compareTo(o2.getName()));
-                    }
-                });
-                new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, games, keys);
+                TreeMap<Game, String> sortedGamesMap = new TreeMap<>();
+                for (int i = 0; i<games.size(); i++){
+                    sortedGamesMap.put(games.get(i), keys.get(i));
+                }
+                new RecyclerView_Config().setConfig(mRecyclerView, HomeActivity.this, new ArrayList<>(sortedGamesMap.keySet()), new ArrayList<>(sortedGamesMap.values()));
                 if (games.isEmpty()) {
                     findViewById(R.id.noGames_home).setVisibility(View.VISIBLE);
                 }
