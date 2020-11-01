@@ -38,7 +38,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout5"
         android:layout_width="296dp"
         android:layout_height="472dp"
         android:background="@drawable/constraint_layout_with_borders"

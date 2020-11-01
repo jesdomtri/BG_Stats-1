@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
-    <color name="flatEmerald">#2ecc71</color>
-    <color name="flatNephritis">#27ae60</color>
     <color name="flatWetAsphalt">#34495e</color>
-    <color name="flatBelizeHole">#2980b9</color>
-    <color name="flatClouds">#ecf0f1</color>
-    <color name="Black">#000000</color>
-    <color name="flatPomegrante">#c0392b</color>
     <color name="draculaBackground">#282a36</color>
     <color name="draculaBackgroundTitle">#383A59</color>
     <color name="draculaCurrentLine">#44475a</color>

@@ -25,7 +25,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/player1"
@@ -61,7 +60,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -98,7 +96,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -135,7 +132,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -172,7 +168,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -209,7 +204,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -246,7 +240,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -283,7 +276,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
